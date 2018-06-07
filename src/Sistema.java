@@ -10,10 +10,12 @@ public class Sistema {
 		addUsuario(admin);
 	}
 	
-	public void addUsuario(Usuario u) {
+	public void addUsuario(Usuario u) s{
 		try {
 			for (Usuario x : listaUsuarios) {
-				if(x.getLogin().equals(u.getLogin()))
+				if(x.getLogin().equals(u.getLogin())) {
+					throw new Exception("Ja existe esse login")
+				}
 			}
 			listaUsuarios.add(u);
 			
