@@ -1,15 +1,14 @@
-import java.util.LinkedList;
+import java.util.*;
 
 public class Sistema {
 	private LinkedList<Usuario> listaUsuarios;
-	
-	
+
 	public Sistema() {
 		listaUsuarios = new LinkedList<Usuario>();
 		UsuarioVip admin = new UsuarioVip("admin", "senha");
 		addUsuario(admin);
 	}
-	
+
 	public void addUsuario(Usuario u) s{
 		try {
 			for (Usuario x : listaUsuarios) {
