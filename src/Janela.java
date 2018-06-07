@@ -7,7 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
-//import net.miginfocom.swing.MigLayout;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
@@ -19,7 +19,6 @@ import javax.swing.JButton;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import javax.swing.Action;
-import java.awt.event.ActionListener;
 
 public class Janela extends JFrame {
 
@@ -31,7 +30,7 @@ public class Janela extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		/*EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Janela frame = new Janela();
@@ -40,7 +39,8 @@ public class Janela extends JFrame {
 					e.printStackTrace();
 				}
 			}
-		});*/
+
+		});
 	}
 
 	/**
@@ -73,6 +73,7 @@ public class Janela extends JFrame {
 		contentPane.add(textField_1);
 		
 		JButton btnEntrar = new JButton("Entrar");
+
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String l = textField.getText();
@@ -80,6 +81,7 @@ public class Janela extends JFrame {
 				
 			}
 		});
+
 		btnEntrar.setBounds(173, 228, 117, 25);
 		contentPane.add(btnEntrar);
 	}

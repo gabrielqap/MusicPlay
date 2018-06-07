@@ -1,4 +1,6 @@
+
 import java.awt.EventQueue;
+
 import java.util.*;
 
 public class Sistema {
@@ -48,14 +50,7 @@ public class Sistema {
 	}
 	
 	public void addUsuario(Usuario u) {
-		/*try {
-			for (Usuario x : listaUsuarios) {
-				if(x.getLogin().equals(u.getLogin())) {
-					throw new Exception("Ja existe esse login")
-				}
-			}
-			listaUsuarios.add(u);
-			
-		}*/
+		listaUsuarios.add(u);
 	}
 }
+
