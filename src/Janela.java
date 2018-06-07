@@ -4,10 +4,24 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.CardLayout;
+import javax.swing.JLabel;
+import java.awt.GridLayout;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JButton;
 
 public class Janela extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -33,8 +47,29 @@ public class Janela extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblLogin = new JLabel("Login");
+		lblLogin.setBounds(44, 30, 57, 41);
+		contentPane.add(lblLogin);
+		
+		textField = new JTextField();
+		textField.setBounds(44, 83, 114, 19);
+		textField.setColumns(10);
+		contentPane.add(textField);
+		
+		JLabel lblSenha = new JLabel("Senha");
+		lblSenha.setBounds(44, 126, 45, 15);
+		contentPane.add(lblSenha);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(44, 161, 114, 19);
+		textField_1.setColumns(10);
+		contentPane.add(textField_1);
+		
+		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.setBounds(173, 228, 117, 25);
+		contentPane.add(btnEntrar);
 	}
-
 }
