@@ -2,6 +2,7 @@
 public abstract class Usuario {
 	private String login;
 	private String senha;
+	private String email;
 	
 	public Usuario(String l, String s) {
 		this.login = l;
@@ -22,5 +23,13 @@ public abstract class Usuario {
 	
 	public void setLogin(String login_) {
 		this.login = login_;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

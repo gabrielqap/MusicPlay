@@ -22,17 +22,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Action;
 import javax.swing.JList;
+import javax.swing.JPasswordField;
 
 public class Janela extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		Sistema A = new Sistema ();
+		A.LerArquivos();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -74,18 +77,13 @@ public class Janela extends JFrame {
 		lblSenha.setBounds(272, 142, 45, 15);
 		contentPane.add(lblSenha);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(272, 171, 147, 31);
-		textField_1.setColumns(10);
-		contentPane.add(textField_1);
-		
 		JButton btnEntrar = new JButton("Entrar");
 
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String l = textField.getText();
-				String s = textField_1.getText();
-				
+				String s = textField.getText();
+				System.out.println(l);
 				
 			}
 		});
@@ -100,6 +98,10 @@ public class Janela extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setBounds(308, 228, 117, 25);
 		contentPane.add(btnCadastrar);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(272, 169, 147, 31);
+		contentPane.add(passwordField);
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {

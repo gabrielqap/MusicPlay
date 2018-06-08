@@ -1,16 +1,17 @@
 
 import java.awt.EventQueue;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class Sistema {
 	private LinkedList<Usuario> listaUsuarios;
-	
+	//FileReader User;
+	BufferedReader Users;
 	public Sistema() {
 		listaUsuarios = new LinkedList<Usuario>();
-		UsuarioVip admin = new UsuarioVip("admin", "senha");
-		listaUsuarios.add(admin);
-		
+		LerArquivos();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -83,6 +84,17 @@ public class Sistema {
 		
 		catch (Exception e) {
 			System.out.println(e);
+		}
+	}
+
+	public void LerArquivos(){
+		try {
+			Users = new BufferedReader(new FileReader("/arquivos/Usuarios.txt"));
+			System.out.println("Aberto com sucesso!\n");
+		}
+		
+		catch (IOException e) {
+			System.out.println("Erro na leitura do arquivo!\n");
 		}
 	}
 }
