@@ -5,11 +5,12 @@ import java.util.*;
 
 public class Sistema {
 	private LinkedList<Usuario> listaUsuarios;
-
+	
 	public Sistema() {
 		listaUsuarios = new LinkedList<Usuario>();
 		UsuarioVip admin = new UsuarioVip("admin", "senha");
-		addUsuario(admin);
+		listaUsuarios.add(admin);
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -22,35 +23,67 @@ public class Sistema {
 		});
 	}
 
-	public String procuraUsuario(String login, String senha) {
-		for (Usuario x : listaUsuarios) {
-			if(x instanceof UsuarioComum) {
-				if (((UsuarioComum)x).getLogin().equals(login)){
-					if(((UsuarioComum)x).getSenha() == senha){
-						return "vip";
+	public Usuario ProcuraUsuario(String login_) {
+		for(Usuario x : listaUsuarios) {
+			if (x.getLogin() == login_) {
+				return x;
+			}
+		}
+		return null;
+	}
+	
+	
+	@SuppressWarnings("finally")
+	public String VerificaUsuario(String login, String senha) {
+			try {
+				Usuario x = ProcuraUsuario(login);
+				if(x != null) {
+					if(x.getSenha() == senha) {
+						if(x instanceof UsuarioComum) {
+							return "Comum";
+						}
+						else {
+							return "Vip";
+						}
 					}
 					else {
-						return "Senha errada";
-					}
-				}
-				else if (((UsuarioVip)x).getLogin().equals(login)) {
-					if(((UsuarioVip)x).getSenha().equals(senha)) {
-						return "comum";
-					}
-					else {
-						return "Senha errada";
+						throw new Exception("Senha incorreta!");
 					}
 				}
 				else {
-					return "O login não existe";
+					throw new Exception("Login não encontrado!");
 				}
 			}
-		}
-		return"";
+			
+			catch(Exception e) {
+				System.out.println(e);
+			}
+			
+			finally {
+				return "";
+			}
 	}
 	
-	public void addUsuario(Usuario u) {
-		listaUsuarios.add(u);
+	public void addUsuario(String login_, String senha_, String tipo) {
+		try {
+			Usuario x = ProcuraUsuario(login_);
+			if(x != null) {
+				throw new Exception("Usuario já existente!");
+			}
+			else {
+				if(tipo == "Vip") {
+					x = new UsuarioVip (login_, senha_);
+				}
+				else {
+					x = new UsuarioComum(login_, senha_);
+				}
+				listaUsuarios.add(x);
+			}
+		}
+		
+		catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 }
 

@@ -15,4 +15,12 @@ public abstract class Usuario {
 	public String getSenha() {
 		return senha;
 	}
+	
+	public void setSenha(String senha_) {
+		this.senha = senha_;
+	}
+	
+	public void setLogin(String login_) {
+		this.login = login_;
+	}
 }
