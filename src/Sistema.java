@@ -84,7 +84,7 @@ public class Sistema {
 
 	public void LerArquivos(){
 		try {
-			Users = new BufferedReader(new FileReader("arquivos/Usuarios.txt"));
+			Users = new BufferedReader(new FileReader("Usuarios.txt"));
 			System.out.println("Aberto com sucesso!\n");
 		} catch (FileNotFoundException e) {
 			//System.out.println("Erro na leitura do arquivo!\n");
