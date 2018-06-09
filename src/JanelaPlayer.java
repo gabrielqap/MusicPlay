@@ -25,7 +25,7 @@ import javax.swing.JButton;
 public class JanelaPlayer extends JFrame {
 	private JanelaCadastro cadastro;
 	private JPanel contentPane;
-	private JanelaCadastro cadastro;
+	
 	
 	private Player player;
 
@@ -50,8 +50,6 @@ public class JanelaPlayer extends JFrame {
 	 */
 	public JanelaPlayer() {
 		cadastro = new JanelaCadastro();
-<<<<<<< HEAD
-=======
 		
 		try{
             FileInputStream stream = new FileInputStream("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/musicas/Bom-dia, Família (Parte 1) - Bom-dia, Família!.mp3");
@@ -66,8 +64,7 @@ public class JanelaPlayer extends JFrame {
         }
     	
 		
-		
->>>>>>> 647e5008e5270820bd770fb214f0fe956ef6c630
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 700);
 		contentPane = new JPanel();
@@ -83,23 +80,11 @@ public class JanelaPlayer extends JFrame {
 		contentPane.add(lblMusicPlayer);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
-<<<<<<< HEAD
-		btnCadastrar.setBounds(34, 130, 117, 25);
-		contentPane.add(btnCadastrar);
-=======
->>>>>>> 647e5008e5270820bd770fb214f0fe956ef6c630
 		btnCadastrar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cadastro.setVisible(true);
-<<<<<<< HEAD
-			//	setVisible(false);
-				
-			}
-		});
-		
-=======
 				setVisible(false);
 				
 			}
@@ -107,7 +92,6 @@ public class JanelaPlayer extends JFrame {
 		btnCadastrar.setBounds(1071, 30, 89, 23);
 		contentPane.add(btnCadastrar);
 	
->>>>>>> 647e5008e5270820bd770fb214f0fe956ef6c630
 		
 	}
 }
