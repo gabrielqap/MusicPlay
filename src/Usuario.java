@@ -4,9 +4,10 @@ public abstract class Usuario {
 	private String senha;
 	private String email;
 	
-	public Usuario(String l, String s) {
+	public Usuario(String l, String s, String e) {
 		this.login = l;
 		this.senha = s;
+		this.email = e;
 	}
 	
 	public String getLogin() {

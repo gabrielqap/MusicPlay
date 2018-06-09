@@ -24,12 +24,40 @@ import javax.swing.Action;
 import java.awt.FlowLayout;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
+import javax.swing.JCheckBox;
 
 public class JanelaCadastro extends JFrame{
 	private JPasswordField pwdS;
 	private JTextField textField;
 	private JPasswordField pwdLkzjdlj;
 	private JTextField textField_1;
+	private static Sistema B;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		B = new Sistema();
+		B.LerArquivos();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JanelaCadastro frame = new JanelaCadastro();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	
+	
+	
+	/**
+	 * Create the frame.
+	 */
+	
 	public JanelaCadastro() {
 		getContentPane().setLayout(null);
 		
@@ -38,7 +66,6 @@ public class JanelaCadastro extends JFrame{
 		getContentPane().add(lblCadastro);
 		
 		pwdS = new JPasswordField();
-		pwdS.setText("S");
 		pwdS.setBounds(219, 76, 92, 30);
 		getContentPane().add(pwdS);
 		
@@ -47,7 +74,7 @@ public class JanelaCadastro extends JFrame{
 		getContentPane().add(lblLogin);
 		
 		textField = new JTextField();
-		textField.setBounds(219, 35, 136, 30);
+		textField.setBounds(219, 34, 136, 30);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -64,7 +91,6 @@ public class JanelaCadastro extends JFrame{
 		getContentPane().add(lblConfirmarSenha);
 		
 		pwdLkzjdlj = new JPasswordField();
-		pwdLkzjdlj.setText("lkzjdlj");
 		pwdLkzjdlj.setBounds(219, 118, 109, 30);
 		getContentPane().add(pwdLkzjdlj);
 		
@@ -72,13 +98,50 @@ public class JanelaCadastro extends JFrame{
 		textField_1.setBounds(180, 156, 202, 30);
 		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
+
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Vip");
+		chckbxNewCheckBox.setBounds(156, 194, 129, 23);
+		getContentPane().add(chckbxNewCheckBox);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(120, 212, 117, 25);
+		btnCadastrar.addActionListener(new ActionListener() {
+			
+			@SuppressWarnings("deprecation")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String usuario = textField.getText();
+					String senha;
+					if(pwdS.getPassword() == pwdLkzjdlj.getPassword()) {
+						senha = pwdS.getText();
+					}
+					else {
+						throw new Exception("Senhas diferentes");
+					}
+					String email = textField_1.getText();
+					if(chckbxNewCheckBox.isSelected())
+						B.addUsuario(usuario, senha, email, "Vip");
+					else 
+						B.addUsuario(usuario, senha, email, "Comum");
+				}
+				catch (Exception a) {
+					System.out.println(a);
+				}
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		btnCadastrar.setBounds(120, 227, 117, 25);
 		getContentPane().add(btnCadastrar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(249, 212, 117, 25);
+		btnCancelar.setBounds(249, 227, 117, 25);
 		getContentPane().add(btnCancelar);
+		
 	}
 }

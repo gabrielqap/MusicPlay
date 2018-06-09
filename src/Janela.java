@@ -113,22 +113,6 @@ public class Janela extends JFrame {
 		lblNewLabel.setBounds(51, 114, 105, 31);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cadastro.setVisible(true);
-				setVisible(false);
-				
-			}
-		});
-		
-		
-		
-		btnCadastrar.setBounds(308, 228, 117, 25);
-		contentPane.add(btnCadastrar);
-		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(272, 131, 147, 31);
 		contentPane.add(passwordField);

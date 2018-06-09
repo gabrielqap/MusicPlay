@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Sistema {
-	private LinkedList<Usuario> listaUsuarios;
+	public LinkedList<Usuario> listaUsuarios;
 	//FileReader User;
 	BufferedReader Users;
 	public Sistema() {
@@ -60,7 +60,7 @@ public class Sistema {
 		return "Login nao econtrado";
 	}
 	
-	public void addUsuario(String login_, String senha_, String tipo) {
+	public void addUsuario(String login_, String senha_, String email_, String tipo) {
 		try {
 			Usuario x;
 			if(ProcuraUsuario(login_)) {
@@ -68,10 +68,10 @@ public class Sistema {
 			}
 			else {
 				if(tipo == "Vip") {
-					x = new UsuarioVip (login_, senha_);
-				}
+					x = new UsuarioVip (login_, senha_ ,email_);
+				} 
 				else {
-					x = new UsuarioComum(login_, senha_);
+					x = new UsuarioComum(login_, senha_ , email_);
 				}
 				listaUsuarios.add(x);
 			}
@@ -89,7 +89,7 @@ public class Sistema {
 			String[] dados; 
 			while (line != null) {
 				dados = line.split(":");
-				addUsuario(dados[0], dados[1], dados[2]);
+				addUsuario(dados[0], dados[1], dados[2], dados[3]);
 				line = Users.readLine();
 			}
 		} catch (FileNotFoundException e) {
