@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,9 +10,23 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 
+import javazoom.jl.player.Player;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JButton;
+
 public class JanelaPlayer extends JFrame {
 
 	private JPanel contentPane;
+	private JanelaCadastro cadastro;
+	
+	private Player player;
 
 	/**
 	 * Launch the application.
@@ -32,6 +48,22 @@ public class JanelaPlayer extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaPlayer() {
+		cadastro = new JanelaCadastro();
+		
+		try{
+            FileInputStream stream = new FileInputStream("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/musicas/Bom-dia, Família (Parte 1) - Bom-dia, Família!.mp3");
+            BufferedInputStream buffer = new BufferedInputStream(stream);
+            this.player = new Player (buffer);
+            System.out.println("Executando...");
+           // this.player.play();
+            System.out.println("Terminado");
+        } catch (Exception e) {
+            System.out.println("Erro!");
+            e.printStackTrace();
+        }
+    	
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 700);
 		contentPane = new JPanel();
@@ -45,5 +77,20 @@ public class JanelaPlayer extends JFrame {
 		lblMusicPlayer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMusicPlayer.setBounds(35, 44, 358, 159);
 		contentPane.add(lblMusicPlayer);
+		
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cadastro.setVisible(true);
+				setVisible(false);
+				
+			}
+		});
+		btnCadastrar.setBounds(1071, 30, 89, 23);
+		contentPane.add(btnCadastrar);
+	
+		
 	}
 }
