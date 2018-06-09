@@ -33,6 +33,7 @@ public class Janela extends JFrame {
 	private JPasswordField passwordField;
 	private static Sistema A;
 	private JanelaPlayer player;
+	private JanelaCadastro cadastro;
 
 	/**
 	 * Launch the application.
@@ -58,6 +59,7 @@ public class Janela extends JFrame {
 	 */
 	public Janela() {
 		player = new JanelaPlayer();
+		cadastro = new JanelaCadastro();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -112,6 +114,18 @@ public class Janela extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cadastro.setVisible(true);
+				setVisible(false);
+				
+			}
+		});
+		
+		
+		
 		btnCadastrar.setBounds(308, 228, 117, 25);
 		contentPane.add(btnCadastrar);
 		
