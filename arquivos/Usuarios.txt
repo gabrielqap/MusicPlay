@@ -1,0 +1,2 @@
+admim:senha:Vip
+didico:kit:Comum

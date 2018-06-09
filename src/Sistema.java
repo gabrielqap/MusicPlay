@@ -12,7 +12,7 @@ public class Sistema {
 	BufferedReader Users;
 	public Sistema() {
 		listaUsuarios = new LinkedList<Usuario>();
-		addUsuario("admim", "senha", "Vip");
+		//addUsuario("admim", "senha", "Vip");
 		
 		//LerArquivos();
 		/*EventQueue.invokeLater(new Runnable() {
@@ -84,13 +84,19 @@ public class Sistema {
 
 	public void LerArquivos(){
 		try {
-			Users = new BufferedReader(new FileReader("Usuarios.txt"));
-			System.out.println("Aberto com sucesso!\n");
+			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/arquivos/Usuarios.txt"));
+			String line = Users.readLine();
+			String[] dados; 
+			while (line != null) {
+				dados = line.split(":");
+				addUsuario(dados[0], dados[1], dados[2]);
+				line = Users.readLine();
+			}
 		} catch (FileNotFoundException e) {
-			//System.out.println("Erro na leitura do arquivo!\n");
+			System.out.println("Erro na leitura do arquivo!\n");
 			e.printStackTrace();
 		} catch (IOException e) {
-			//System.out.println("Erro na leitura do arquivo!\n");
+			System.out.println("Erro na leitura do arquivo!\n");
 			e.printStackTrace();
 		} finally {
 			try {
