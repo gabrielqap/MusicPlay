@@ -84,13 +84,13 @@ public class Sistema {
 
 	public void LerArquivos(){
 		try {
-			Users = new BufferedReader(new FileReader("arquivos/Usuarios.txt"));
+			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));
 			System.out.println("Aberto com sucesso!\n");
 		} catch (FileNotFoundException e) {
-			//System.out.println("Erro na leitura do arquivo!\n");
+			System.out.println("Erro na leitura do arquivo!\n");
 			e.printStackTrace();
 		} catch (IOException e) {
-			//System.out.println("Erro na leitura do arquivo!\n");
+			System.out.println("Erro na leitura do arquivo!\n");
 			e.printStackTrace();
 		} finally {
 			try {
