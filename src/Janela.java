@@ -24,17 +24,21 @@ import javax.swing.Action;
 import javax.swing.JList;
 import javax.swing.JPasswordField;
 
+import javax.swing.WindowConstants;
+
 public class Janela extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private static Sistema A;
+	private JanelaPlayer player;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Sistema A = new Sistema ();
+		A = new Sistema ();
 		A.LerArquivos();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -53,6 +57,8 @@ public class Janela extends JFrame {
 	 * Create the frame.
 	 */
 	public Janela() {
+		player = new JanelaPlayer();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -61,11 +67,11 @@ public class Janela extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setBounds(272, 26, 57, 41);
+		lblLogin.setBounds(272, 11, 57, 41);
 		contentPane.add(lblLogin);
 		
 		textField = new JTextField();
-		textField.setBounds(272, 79, 147, 31);
+		textField.setBounds(272, 63, 147, 31);
 		textField.setColumns(10);
 		contentPane.add(textField);
 		
@@ -74,17 +80,27 @@ public class Janela extends JFrame {
 		contentPane.add(list);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setBounds(272, 142, 45, 15);
+		lblSenha.setBounds(272, 105, 45, 15);
 		contentPane.add(lblSenha);
+		
+		JLabel erro = new JLabel("");
+		erro.setBounds(272, 191, 147, 14);
+		contentPane.add(erro);
 		
 		JButton btnEntrar = new JButton("Entrar");
 
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String l = textField.getText();
-				String s = textField.getText();
-				System.out.println(l);
+				String s = passwordField.getText();
 				
+				if (A.VerificaUsuario(l, s) == "Comum" || A.VerificaUsuario(l, s) == "Vip" ) {
+					player.setVisible(true);
+					setVisible(false);
+				}
+				else {
+					erro.setText(A.VerificaUsuario(l, s));
+				}				
 			}
 		});
 
@@ -100,8 +116,9 @@ public class Janela extends JFrame {
 		contentPane.add(btnCadastrar);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(272, 169, 147, 31);
+		passwordField.setBounds(272, 131, 147, 31);
 		contentPane.add(passwordField);
+		
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {

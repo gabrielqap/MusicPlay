@@ -1,6 +1,7 @@
 
 import java.awt.EventQueue;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -11,8 +12,10 @@ public class Sistema {
 	BufferedReader Users;
 	public Sistema() {
 		listaUsuarios = new LinkedList<Usuario>();
-		LerArquivos();
-		EventQueue.invokeLater(new Runnable() {
+		addUsuario("admim", "senha", "Vip");
+		
+		//LerArquivos();
+		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Janela frame = new Janela();
@@ -21,54 +24,46 @@ public class Sistema {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 	}
-
-	public Usuario ProcuraUsuario(String login_) {
+	// mudei pra boleano, pq a antiga nao tava funcionando no VerificaUsuario	
+	public boolean ProcuraUsuario(String login_) {
 		for(Usuario x : listaUsuarios) {
 			if (x.getLogin() == login_) {
-				return x;
+				return true;
 			}
 		}
-		return null;
+		return false;
 	}
 	
 	
-	@SuppressWarnings("finally")
+	//@SuppressWarnings("finally")
+	//tirei o try pra dar uma modificada, acho que da pra colocar dps ainda
 	public String VerificaUsuario(String login, String senha) {
-			try {
-				Usuario x = ProcuraUsuario(login);
-				if(x != null) {
-					if(x.getSenha() == senha) {
-						if(x instanceof UsuarioComum) {
-							return "Comum";
-						}
-						else {
-							return "Vip";
-						}
+			
+		for (Usuario x : listaUsuarios) {
+			if(x.getLogin().equals(login)) {
+				if(x.getSenha().equals(senha)) {
+					if(x instanceof UsuarioComum) {
+						return "Comum";
 					}
 					else {
-						throw new Exception("Senha incorreta!");
+						return "Vip";
 					}
 				}
 				else {
-					throw new Exception("Login não encontrado!");
+					//throw new Exception("Senha incorreta!");
+					return "Senha incorreta";
 				}
 			}
-			
-			catch(Exception e) {
-				System.out.println(e);
-			}
-			
-			finally {
-				return "";
-			}
+		}
+		return "Login nao econtrado";
 	}
 	
 	public void addUsuario(String login_, String senha_, String tipo) {
 		try {
-			Usuario x = ProcuraUsuario(login_);
-			if(x != null) {
+			Usuario x;
+			if(ProcuraUsuario(login_)) {
 				throw new Exception("Usuario já existente!");
 			}
 			else {
@@ -89,13 +84,23 @@ public class Sistema {
 
 	public void LerArquivos(){
 		try {
-			Users = new BufferedReader(new FileReader("/arquivos/Usuarios.txt"));
+			Users = new BufferedReader(new FileReader("arquivos/Usuarios.txt"));
 			System.out.println("Aberto com sucesso!\n");
-		}
-		
-		catch (IOException e) {
-			System.out.println("Erro na leitura do arquivo!\n");
-		}
+		} catch (FileNotFoundException e) {
+			//System.out.println("Erro na leitura do arquivo!\n");
+			e.printStackTrace();
+		} catch (IOException e) {
+			//System.out.println("Erro na leitura do arquivo!\n");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (Users != null) {
+					Users.close();
+				}
+			} catch (IOException e) {
+				
+			}
+		} 			
 	}
 }
 
