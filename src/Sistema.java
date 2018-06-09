@@ -12,19 +12,7 @@ public class Sistema {
 	BufferedReader Users;
 	public Sistema() {
 		listaUsuarios = new LinkedList<Usuario>();
-		//addUsuario("admim", "senha", "Vip");
 		
-		//LerArquivos();
-		/*EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Janela frame = new Janela();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});*/
 	}
 	// mudei pra boleano, pq a antiga nao tava funcionando no VerificaUsuario	
 	public boolean ProcuraUsuario(String login_) {
@@ -84,7 +72,7 @@ public class Sistema {
 
 	public void LerArquivos(){
 		try {
-			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));
+			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/arquivos/Usuarios.txt"));
 			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
