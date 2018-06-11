@@ -117,6 +117,32 @@ public class JanelaCadastro extends JFrame{
 		chckbxNewCheckBox.setBounds(156, 194, 129, 23);
 		getContentPane().add(chckbxNewCheckBox);
 		
+		JCheckBox chckbxComum = new JCheckBox("Comum");
+		chckbxComum.setBounds(289, 194, 129, 23);
+		getContentPane().add(chckbxComum);
+		
+		
+		chckbxComum.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(chckbxComum.isSelected()) {
+					chckbxNewCheckBox.setSelected(false);
+				}
+				
+			}
+		});
+		
+		chckbxNewCheckBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(chckbxNewCheckBox.isSelected()) {
+					chckbxComum.setSelected(false);
+				}
+				
+			}
+		});
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			@Override
@@ -173,6 +199,7 @@ public class JanelaCadastro extends JFrame{
 		});
 		btnCancelar.setBounds(265, 263, 117, 25);
 		getContentPane().add(btnCancelar);
+		
 		
 		
 		

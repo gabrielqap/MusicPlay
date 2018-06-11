@@ -54,7 +54,7 @@ public class JanelaPlayer extends JFrame {
             BufferedInputStream buffer = new BufferedInputStream(stream);
             this.player = new Player (buffer);
             System.out.println("Executando...");
-            this.player.play();
+           // this.player.play();
             System.out.println("Terminado");
         } catch (Exception e) {
             System.out.println("Erro!");
