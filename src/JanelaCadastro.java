@@ -19,6 +19,10 @@ import javax.swing.JButton;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.Action;
 import java.awt.FlowLayout;
@@ -32,6 +36,8 @@ public class JanelaCadastro extends JFrame{
 	private JPasswordField pwdLkzjdlj;
 	private JTextField textField_1;
 	private static Sistema B;
+	BufferedWriter Escrita;
+	FileWriter writer;
 	
 	/**
 	 * Launch the application.
@@ -117,13 +123,24 @@ public class JanelaCadastro extends JFrame{
 					String usuario = textField.getText();
 					String senha1 = pwdS.getText();
 					String senha2 = pwdLkzjdlj.getText();
+					String tipo = "";
 					if(senha1.equals(senha2)) {
 							String email = textField_1.getText();
 							if(chckbxNewCheckBox.isSelected()) {
-								B.addUsuario(usuario, senha1, email, "Vip");
+								tipo = "Vip";
+								B.addUsuario(usuario, senha1, email, tipo);
 							}
 							else { 
-								B.addUsuario(usuario, senha1, email, "Comum");
+								tipo = "Comum";
+								B.addUsuario(usuario, senha1, email, tipo);
+							}
+							try {
+								writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt", true);
+								writer.write(usuario + ":" + senha1 + ":" + email + ":" + tipo);
+								writer.close();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
 							}
 							ApagaTudo();
 							}

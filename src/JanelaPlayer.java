@@ -25,8 +25,6 @@ import javax.swing.JButton;
 public class JanelaPlayer extends JFrame {
 	private JanelaCadastro cadastro;
 	private JPanel contentPane;
-	
-	
 	private Player player;
 
 	/**
@@ -56,7 +54,7 @@ public class JanelaPlayer extends JFrame {
             BufferedInputStream buffer = new BufferedInputStream(stream);
             this.player = new Player (buffer);
             System.out.println("Executando...");
-           // this.player.play();
+            this.player.play();
             System.out.println("Terminado");
         } catch (Exception e) {
             System.out.println("Erro!");

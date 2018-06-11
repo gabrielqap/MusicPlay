@@ -1,8 +1,11 @@
 
 import java.awt.EventQueue;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
@@ -10,6 +13,8 @@ public class Sistema {
 	public LinkedList<Usuario> listaUsuarios;
 	//FileReader User;
 	BufferedReader Users;
+	BufferedWriter Escrita;
+	FileWriter writer;
 	public Sistema() {
 		listaUsuarios = new LinkedList<Usuario>();
 		
@@ -56,10 +61,10 @@ public class Sistema {
 			}
 			else {
 				if(tipo == "Vip") {
-					x = new UsuarioVip (login_, senha_ ,email_);
+					x = new UsuarioVip (login_, senha_ ,email_, tipo);
 				} 
 				else {
-					x = new UsuarioComum(login_, senha_ , email_);
+					x = new UsuarioComum(login_, senha_ , email_, tipo);
 				}
 				listaUsuarios.add(x);
 			}
@@ -95,6 +100,24 @@ public class Sistema {
 				
 			}
 		} 			
+	}
+	
+	public void SalvarArquivos() {
+		try {
+			writer = new FileWriter(new File("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));
+			Escrita = new BufferedWriter(writer);
+			for (Usuario B : listaUsuarios) {
+				Escrita.write(B.getLogin() + ":" + B.getSenha() + ":" + B.getEmail() + ":" + B.getTipo());
+			}
+		}
+			catch (FileNotFoundException e) {
+				System.out.println("Erro na abertura do arquivo!\n");
+				e.printStackTrace();
+			} catch (IOException e) {
+				System.out.println("Erro na abertura do arquivo!\n");
+				e.printStackTrace();
+		}
+		
 	}
 }
 

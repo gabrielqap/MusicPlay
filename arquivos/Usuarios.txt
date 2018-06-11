@@ -1,2 +1,2 @@
 admim:senha:email:Vip
-didico:kit:didico@hotmail.com:Comum:
+gabriel:abc:kajsdkja:Vip
