@@ -70,6 +70,7 @@ public class JanelaCadastro extends JFrame{
 		B = new Sistema();
 		B.LerArquivos();
 		getContentPane().setLayout(null);
+		setSize(450, 300);
 		JLabel lblCadastro = new JLabel("Cadastro");
 		lblCadastro.setBounds(22, 23, 70, 15);
 		getContentPane().add(lblCadastro);
