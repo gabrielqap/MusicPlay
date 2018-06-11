@@ -52,7 +52,7 @@ public class JanelaPlayer extends JFrame {
 		cadastro = new JanelaCadastro();
 		
 		try{
-            FileInputStream stream = new FileInputStream("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/musicas/Bom-dia, FamÌlia (Parte 1) - Bom-dia, FamÌlia!.mp3");
+            FileInputStream stream = new FileInputStream("/home/gabriel/√Årea de Trabalho/MusicPlay/musicas/Bom-dia, Fam√≠lia (Parte 1) - Bom-dia, Fam√≠lia!.mp3");
             BufferedInputStream buffer = new BufferedInputStream(stream);
             this.player = new Player (buffer);
             System.out.println("Executando...");
@@ -85,11 +85,11 @@ public class JanelaPlayer extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cadastro.setVisible(true);
-				setVisible(false);
+				setVisible(true);
 				
 			}
 		});
-		btnCadastrar.setBounds(1071, 30, 89, 23);
+		btnCadastrar.setBounds(91, 156, 126, 25);
 		contentPane.add(btnCadastrar);
 	
 		

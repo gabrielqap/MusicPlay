@@ -98,6 +98,10 @@ public class JanelaCadastro extends JFrame{
 		textField_1.setBounds(180, 156, 202, 30);
 		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
+		
+		JLabel erro = new JLabel("");
+		erro.setBounds(121, 225, 228, 30);
+		getContentPane().add(erro);
 
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Vip");
 		chckbxNewCheckBox.setBounds(156, 194, 129, 23);
@@ -111,18 +115,19 @@ public class JanelaCadastro extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String usuario = textField.getText();
-					String senha;
-					if(pwdS.getPassword() == pwdLkzjdlj.getPassword()) {
+					String senha = null;
+					if(pwdS.getText() == pwdLkzjdlj.getText()) {
 						senha = pwdS.getText();
 					}
 					else {
-						throw new Exception("Senhas diferentes");
+						erro.setText("Senhas diferentes");
 					}
 					String email = textField_1.getText();
 					if(chckbxNewCheckBox.isSelected())
 						B.addUsuario(usuario, senha, email, "Vip");
 					else 
 						B.addUsuario(usuario, senha, email, "Comum");
+					setVisible(false);
 				}
 				catch (Exception a) {
 					System.out.println(a);
@@ -136,12 +141,22 @@ public class JanelaCadastro extends JFrame{
 		
 		
 		
-		btnCadastrar.setBounds(120, 227, 117, 25);
+		btnCadastrar.setBounds(121, 263, 117, 25);
 		getContentPane().add(btnCadastrar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(249, 227, 117, 25);
+		btnCadastrar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				
+			}
+		});
+		btnCancelar.setBounds(265, 263, 117, 25);
 		getContentPane().add(btnCancelar);
+		
+		
 		
 	}
 }

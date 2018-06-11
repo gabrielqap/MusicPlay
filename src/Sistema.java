@@ -72,8 +72,8 @@ public class Sistema {
 
 	public void LerArquivos(){
 		try {
-			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/arquivos/Usuarios.txt"));
-			String line = Users.readLine();
+			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));
+		String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
 				dados = line.split(":");
