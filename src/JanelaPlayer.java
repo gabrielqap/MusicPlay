@@ -85,8 +85,6 @@ public class JanelaPlayer extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cadastro.setVisible(true);
-				setVisible(true);
-				
 			}
 		});
 		btnCadastrar.setBounds(91, 156, 126, 25);

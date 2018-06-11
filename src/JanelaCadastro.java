@@ -37,8 +37,6 @@ public class JanelaCadastro extends JFrame{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		B = new Sistema();
-		B.LerArquivos();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -50,17 +48,22 @@ public class JanelaCadastro extends JFrame{
 			}
 		});
 	}
-
 	
-	
-	
+	public void ApagaTudo() {
+		textField.setText(null);
+		textField_1.setText(null);
+		pwdS.setText(null);
+		pwdLkzjdlj.setText(null);
+		setVisible(false);
+	}
 	/**
 	 * Create the frame.
 	 */
 	
 	public JanelaCadastro() {
+		B = new Sistema();
+		B.LerArquivos();
 		getContentPane().setLayout(null);
-		
 		JLabel lblCadastro = new JLabel("Cadastro");
 		lblCadastro.setBounds(22, 23, 70, 15);
 		getContentPane().add(lblCadastro);
@@ -109,29 +112,26 @@ public class JanelaCadastro extends JFrame{
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
-			
-			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
 					String usuario = textField.getText();
-					String senha = null;
-					if(pwdS.getText() == pwdLkzjdlj.getText()) {
-						senha = pwdS.getText();
-					}
+					String senha1 = pwdS.getText();
+					String senha2 = pwdLkzjdlj.getText();
+					if(senha1.equals(senha2)) {
+							String email = textField_1.getText();
+							if(chckbxNewCheckBox.isSelected()) {
+								B.addUsuario(usuario, senha1, email, "Vip");
+							}
+							else { 
+								B.addUsuario(usuario, senha1, email, "Comum");
+							}
+							ApagaTudo();
+							}
 					else {
-						erro.setText("Senhas diferentes");
-					}
-					String email = textField_1.getText();
-					if(chckbxNewCheckBox.isSelected())
-						B.addUsuario(usuario, senha, email, "Vip");
-					else 
-						B.addUsuario(usuario, senha, email, "Comum");
-					setVisible(false);
-				}
-				catch (Exception a) {
-					System.out.println(a);
-				}
+							System.out.println(pwdS.getPassword());
+							System.out.println(pwdLkzjdlj.getPassword());
+							erro.setText("Senhas diferentes");
+						}
 			}
 		});
 		
@@ -145,11 +145,11 @@ public class JanelaCadastro extends JFrame{
 		getContentPane().add(btnCadastrar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCadastrar.addActionListener(new ActionListener() {
+		btnCancelar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+				ApagaTudo();
 				
 			}
 		});
