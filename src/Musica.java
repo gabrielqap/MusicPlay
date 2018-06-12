@@ -1,7 +1,14 @@
 
 public class Musica {
 		private String Nome;
+		private String artista;
 		private String Localizacao;
+		
+		public Musica(String n, String a, String l) {
+			Nome = n;
+			artista = a;
+			Localizacao = l;
+		}
 		
 		public String getNome() {
 			return Nome;
@@ -17,6 +24,14 @@ public class Musica {
 
 		public void setLocalizacao(String localizacao) {
 			Localizacao = localizacao;
+		}
+		
+		public String getArtista() {
+			return artista;
+		}
+		
+		public String info() {
+			return getArtista() + " - " + getNome(); 
 		}
 		
 }

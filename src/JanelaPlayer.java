@@ -21,6 +21,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.JToggleButton;
+import javax.swing.JTextPane;
 
 public class JanelaPlayer extends JFrame {
 	private JanelaCadastro cadastro;
@@ -46,11 +50,11 @@ public class JanelaPlayer extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JanelaPlayer() {
+	public JanelaPlayer(Sistema player) {
 		cadastro = new JanelaCadastro();
 		
 		try{
-            FileInputStream stream = new FileInputStream("/home/gabriel/Área de Trabalho/MusicPlay/musicas/Bom-dia, Família (Parte 1) - Bom-dia, Família!.mp3");
+            FileInputStream stream = new FileInputStream("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/musicas/Bom-dia, Família (Parte 1) - Bom-dia, Família!.mp3");
             BufferedInputStream buffer = new BufferedInputStream(stream);
             this.player = new Player (buffer);
             System.out.println("Executando...");
@@ -74,7 +78,7 @@ public class JanelaPlayer extends JFrame {
 		lblMusicPlayer.setBackground(Color.BLACK);
 		lblMusicPlayer.setForeground(Color.RED);
 		lblMusicPlayer.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMusicPlayer.setBounds(29, 12, 358, 159);
+		lblMusicPlayer.setBounds(29, 12, 306, 107);
 		contentPane.add(lblMusicPlayer);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
@@ -85,9 +89,15 @@ public class JanelaPlayer extends JFrame {
 				cadastro.setVisible(true);
 			}
 		});
-		btnCadastrar.setBounds(91, 156, 126, 25);
+		btnCadastrar.setBounds(1048, 53, 126, 25);
 		contentPane.add(btnCadastrar);
-	
+		
+		JList list = new JList();
+		list.setBackground(new Color(0, 0, 0));
+		//list.add(player)
+		list.setBounds(78, 369, 174, -238);
+		contentPane.add(list);
+			
 		
 	}
 }

@@ -162,7 +162,7 @@ public class JanelaCadastro extends JFrame{
 								B.addUsuario(usuario, senha1, email, tipo);
 							}
 							try {
-								writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt", true);
+								writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/arquivos/Usuarios.txt", true);
 								writer.write(usuario + ":" + senha1 + ":" + email + ":" + tipo);
 								writer.close();
 							} catch (IOException e1) {

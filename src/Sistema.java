@@ -11,13 +11,14 @@ import java.util.*;
 
 public class Sistema {
 	public LinkedList<Usuario> listaUsuarios;
+	private LinkedList<Musica> musicas;
 	//FileReader User;
 	BufferedReader Users;
 	BufferedWriter Escrita;
 	FileWriter writer;
 	public Sistema() {
 		listaUsuarios = new LinkedList<Usuario>();
-		
+		musicas = new LinkedList<Musica>();
 	}
 	// mudei pra boleano, pq a antiga nao tava funcionando no VerificaUsuario	
 	public boolean ProcuraUsuario(String login_) {
@@ -74,11 +75,16 @@ public class Sistema {
 			System.out.println(e);
 		}
 	}
+	
+	public void addMusica(String artista, String nome, String diretorio) {
+		Musica x = new Musica(artista, nome, diretorio);
+		musicas.add(x);
+	}
 
 	public void LerArquivos(){
 		try {
-			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));
-		String line = Users.readLine();
+			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/arquivos/Usuarios.txt"));
+			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
 				dados = line.split(":");
@@ -99,12 +105,36 @@ public class Sistema {
 			} catch (IOException e) {
 				
 			}
-		} 			
+		}
+		try {
+			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/arquivos/musicas.txt"));
+			String line = Users.readLine();
+			String[] dados; 
+			while (line != null) {
+				dados = line.split(":");
+				addMusica(dados[1], dados[0], dados[2]);
+				line = Users.readLine();
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Erro na leitura do arquivo!\n");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Erro na leitura do arquivo!\n");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (Users != null) {
+					Users.close();
+				}
+			} catch (IOException e) {
+				
+			}
+		}
 	}
 	
 	public void SalvarArquivos() {
 		try {
-			writer = new FileWriter(new File("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));
+			writer = new FileWriter(new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/arquivos/Usuarios.txt"));
 			Escrita = new BufferedWriter(writer);
 			for (Usuario B : listaUsuarios) {
 				Escrita.write(B.getLogin() + ":" + B.getSenha() + ":" + B.getEmail() + ":" + B.getTipo());
