@@ -78,6 +78,18 @@ public class JanelaPlayer extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		JList<String> list = new JList<String>(listModel);
+		list.setBackground(Color.WHITE);
+		for (Musica x : sistema.musicas) {
+			listModel.addElement("ahahah");
+			x.info();
+		}
+		//list.setModel(listModel); 
+		list.setBounds(124, 417, 186, -265);
+		contentPane.add(list);
+		
+		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			
@@ -107,16 +119,8 @@ public class JanelaPlayer extends JFrame {
 		btnAdicionarMusica.setBounds(100, 441, 196, 25);
 		contentPane.add(btnAdicionarMusica);
 		
-		DefaultListModel listModel = new DefaultListModel();
-		JList list = new JList(listModel);
-		
-		for (Musica x : sistema.musicas) {
-			listModel.addElement("ahahah");
-		}
-		//list.setModel(listModel); 
-		list.setBounds(124, 417, 186, -265);
-		contentPane.add(list);
 			
 		
 	}
+
 }
