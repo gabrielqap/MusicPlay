@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 
 import javazoom.jl.player.Player;
@@ -36,7 +38,7 @@ public class JanelaPlayer extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -47,15 +49,15 @@ public class JanelaPlayer extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public JanelaPlayer() {
+	public JanelaPlayer(Sistema sistema) {
 		cadastro = new JanelaCadastro();
 		
-		try{
+		/*try{
             FileInputStream stream = new FileInputStream("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/musicas/Bom-dia, Família (Parte 1) - Bom-dia, Família!.mp3");
             BufferedInputStream buffer = new BufferedInputStream(stream);
             this.player = new Player (buffer);
@@ -65,23 +67,16 @@ public class JanelaPlayer extends JFrame {
         } catch (Exception e) {
             System.out.println("Erro!");
             e.printStackTrace();
-        }
+        }*/
     	
 		
-
+		this.setTitle("Music Player");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblMusicPlayer = new JLabel("Music Player");
-		lblMusicPlayer.setBackground(Color.BLACK);
-		lblMusicPlayer.setForeground(Color.RED);
-		lblMusicPlayer.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMusicPlayer.setBounds(29, 12, 306, 107);
-		contentPane.add(lblMusicPlayer);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -102,11 +97,25 @@ public class JanelaPlayer extends JFrame {
 				JFileChooser fc = new JFileChooser();
 				fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				fc.showOpenDialog(null);
-				//File 
+				File f = fc.getSelectedFile();
+				
+				String musica = f.getName();
+				String dados[] = musica.split("-");
+				sistema.addMusica(dados[0], dados[1], f.getPath());
 			}	
 		});
 		btnAdicionarMusica.setBounds(100, 441, 196, 25);
 		contentPane.add(btnAdicionarMusica);
+		
+		DefaultListModel listModel = new DefaultListModel();
+		JList list = new JList(listModel);
+		
+		for (Musica x : sistema.musicas) {
+			listModel.addElement("ahahah");
+		}
+		//list.setModel(listModel); 
+		list.setBounds(124, 417, 186, -265);
+		contentPane.add(list);
 			
 		
 	}

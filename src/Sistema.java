@@ -11,7 +11,7 @@ import java.util.*;
 
 public class Sistema {
 	public LinkedList<Usuario> listaUsuarios;
-	private LinkedList<Musica> musicas;
+	public LinkedList<Musica> musicas;
 	//FileReader User;
 	BufferedReader Users;
 	BufferedWriter Escrita;
@@ -19,6 +19,7 @@ public class Sistema {
 	public Sistema() {
 		listaUsuarios = new LinkedList<Usuario>();
 		musicas = new LinkedList<Musica>();
+		LerArquivos();
 	}
 	// mudei pra boleano, pq a antiga nao tava funcionando no VerificaUsuario	
 	public boolean ProcuraUsuario(String login_) {
@@ -148,6 +149,20 @@ public class Sistema {
 				e.printStackTrace();
 		}
 		
+		try {
+			writer = new FileWriter(new File("/home/talles/bti/lp2/MusicPlay/arquivos/musicas.txt"));
+			Escrita = new BufferedWriter(writer);
+			for (Musica B : musicas) {
+				Escrita.write(B.getArtista() + ":" + B.getNome()  + ":" + B.getLocalizacao());
+			}
+		}
+			catch (FileNotFoundException e) {
+				System.out.println("Erro na abertura do arquivo!\n");
+				e.printStackTrace();
+			} catch (IOException e) {
+				System.out.println("Erro na abertura do arquivo!\n");
+				e.printStackTrace();
+		}
 	}
 }
 

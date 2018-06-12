@@ -35,12 +35,11 @@ public class Janela extends JFrame {
 	private JanelaPlayer player;
 	private JanelaCadastro cadastro;
 
+	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		A = new Sistema ();
-		A.LerArquivos();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -58,8 +57,10 @@ public class Janela extends JFrame {
 	 * Create the frame.
 	 */
 	public Janela() {
-		player = new JanelaPlayer();
-		cadastro = new JanelaCadastro();
+		A = new Sistema ();
+		A.LerArquivos();
+		player = new JanelaPlayer(A);
+		cadastro = new JanelaCadastro();		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
