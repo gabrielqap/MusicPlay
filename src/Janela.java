@@ -58,7 +58,7 @@ public class Janela extends JFrame {
 	 * Create the frame.
 	 */
 	public Janela() {
-		player = new JanelaPlayer(A);
+		player = new JanelaPlayer();
 		cadastro = new JanelaCadastro();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

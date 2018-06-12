@@ -83,7 +83,7 @@ public class Sistema {
 
 	public void LerArquivos(){
 		try {
-			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/arquivos/Usuarios.txt"));
+			Users = new BufferedReader(new FileReader("/home/talles/bti/lp2/MusicPlay/arquivos/Usuarios.txt"));
 			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
@@ -107,7 +107,7 @@ public class Sistema {
 			}
 		}
 		try {
-			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/arquivos/musicas.txt"));
+			Users = new BufferedReader(new FileReader("/home/talles/bti/lp2/MusicPlay/arquivos/musicas.txt"));
 			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
@@ -134,7 +134,7 @@ public class Sistema {
 	
 	public void SalvarArquivos() {
 		try {
-			writer = new FileWriter(new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/arquivos/Usuarios.txt"));
+			writer = new FileWriter(new File("/home/talles/bti/lp2/MusicPlay/arquivos/Usuarios.txt"));
 			Escrita = new BufferedWriter(writer);
 			for (Usuario B : listaUsuarios) {
 				Escrita.write(B.getLogin() + ":" + B.getSenha() + ":" + B.getEmail() + ":" + B.getTipo());

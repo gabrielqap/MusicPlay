@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JToggleButton;
 import javax.swing.JTextPane;
 
@@ -50,7 +52,7 @@ public class JanelaPlayer extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JanelaPlayer(Sistema player) {
+	public JanelaPlayer() {
 		cadastro = new JanelaCadastro();
 		
 		try{
@@ -92,11 +94,19 @@ public class JanelaPlayer extends JFrame {
 		btnCadastrar.setBounds(1048, 53, 126, 25);
 		contentPane.add(btnCadastrar);
 		
-		JList list = new JList();
-		list.setBackground(new Color(0, 0, 0));
-		//list.add(player)
-		list.setBounds(78, 369, 174, -238);
-		contentPane.add(list);
+		JButton btnAdicionarMusica = new JButton("Adicionar Musica");
+		btnAdicionarMusica.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				fc.showOpenDialog(null);
+				//File 
+			}	
+		});
+		btnAdicionarMusica.setBounds(100, 441, 196, 25);
+		contentPane.add(btnAdicionarMusica);
 			
 		
 	}
