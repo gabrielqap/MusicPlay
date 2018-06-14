@@ -28,6 +28,7 @@ import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JToggleButton;
+import javax.swing.ListModel;
 import javax.swing.JTextPane;
 
 public class JanelaPlayer extends JFrame {
@@ -58,7 +59,7 @@ public class JanelaPlayer extends JFrame {
 		cadastro = new JanelaCadastro();
 		
 		/*try{
-            FileInputStream stream = new FileInputStream("/Users/Talle/Desktop/bti/6/lp2/MusicPlay/musicas/Bom-dia, Família (Parte 1) - Bom-dia, Família!.mp3");
+            FileInputStream stream = new FileInputStream("/home/gabriel/Área de Trabalho/MusicPlay/musicas/Bom-dia, Família (Parte 1) - Bom-dia, Família!.mp3");
             BufferedInputStream buffer = new BufferedInputStream(stream);
             this.player = new Player (buffer);
             System.out.println("Executando...");
@@ -79,15 +80,11 @@ public class JanelaPlayer extends JFrame {
 		contentPane.setLayout(null);
 		
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		JList<String> list = new JList<String>(listModel);
-		list.setBackground(Color.WHITE);
-		for (Musica x : sistema.musicas) {
-			listModel.addElement("ahahah");
-			x.info();
+		
+		for(Musica a : sistema.musicas) {
+			listModel.addElement(a.info());
 		}
-		//list.setModel(listModel); 
-		list.setBounds(124, 417, 186, -265);
-		contentPane.add(list);
+		JList<String> list_1 = new JList<String>(listModel);
 		
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
@@ -119,8 +116,10 @@ public class JanelaPlayer extends JFrame {
 		btnAdicionarMusica.setBounds(100, 441, 196, 25);
 		contentPane.add(btnAdicionarMusica);
 		
+		list_1.setBounds(377, 152, 180, 224);
+		contentPane.add(list_1);
+		
 			
 		
 	}
-
 }

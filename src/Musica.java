@@ -1,3 +1,4 @@
+import java.awt.Component;
 
 public class Musica {
 		private String Nome;

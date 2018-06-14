@@ -84,7 +84,7 @@ public class Sistema {
 
 	public void LerArquivos(){
 		try {
-			Users = new BufferedReader(new FileReader("/home/talles/bti/lp2/MusicPlay/arquivos/Usuarios.txt"));
+			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));
 			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
@@ -108,7 +108,7 @@ public class Sistema {
 			}
 		}
 		try {
-			Users = new BufferedReader(new FileReader("/home/talles/bti/lp2/MusicPlay/arquivos/musicas.txt"));
+			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt"));
 			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
@@ -135,7 +135,7 @@ public class Sistema {
 	
 	public void SalvarArquivos() {
 		try {
-			writer = new FileWriter(new File("/home/talles/bti/lp2/MusicPlay/arquivos/Usuarios.txt"));
+			writer = new FileWriter(new File("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));
 			Escrita = new BufferedWriter(writer);
 			for (Usuario B : listaUsuarios) {
 				Escrita.write(B.getLogin() + ":" + B.getSenha() + ":" + B.getEmail() + ":" + B.getTipo());
@@ -150,17 +150,17 @@ public class Sistema {
 		}
 		
 		try {
-			writer = new FileWriter(new File("/home/talles/bti/lp2/MusicPlay/arquivos/musicas.txt"));
+			writer = new FileWriter(new File("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt"));
 			Escrita = new BufferedWriter(writer);
 			for (Musica B : musicas) {
 				Escrita.write(B.getArtista() + ":" + B.getNome()  + ":" + B.getLocalizacao());
 			}
 		}
 			catch (FileNotFoundException e) {
-				System.out.println("Erro na abertura do arquivo!\n");
+				System.out.println("Erro na abertura do arquivooo!\n");
 				e.printStackTrace();
 			} catch (IOException e) {
-				System.out.println("Erro na abertura do arquivo!\n");
+				System.out.println("Erro na abertura do arquivoooo!\n");
 				e.printStackTrace();
 		}
 	}
