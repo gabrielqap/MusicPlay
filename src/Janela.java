@@ -58,7 +58,7 @@ public class Janela extends JFrame {
 	 */
 	public Janela() {
 		A = new Sistema ();
-		A.LerArquivos();
+//		A.LerArquivos();
 		player = new JanelaPlayer(A);
 		cadastro = new JanelaCadastro();		
 		
