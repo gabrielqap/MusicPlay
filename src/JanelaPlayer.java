@@ -57,9 +57,10 @@ public class JanelaPlayer extends JFrame {
 	 */
 	public JanelaPlayer(Sistema sistema) {
 		cadastro = new JanelaCadastro();
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
 		
 		/*try{
-            FileInputStream stream = new FileInputStream("/home/gabriel/Área de Trabalho/MusicPlay/musicas/Bom-dia, Família (Parte 1) - Bom-dia, Família!.mp3");
+            FileInputStream stream = new FileInputStream("");
             BufferedInputStream buffer = new BufferedInputStream(stream);
             this.player = new Player (buffer);
             System.out.println("Executando...");
@@ -79,7 +80,7 @@ public class JanelaPlayer extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 				
-		
+		//BOTAO CADASTRAR
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			
@@ -91,6 +92,7 @@ public class JanelaPlayer extends JFrame {
 		btnCadastrar.setBounds(1048, 53, 126, 25);
 		contentPane.add(btnCadastrar);
 		
+		//BOTAO ADICIONAR MUSICA
 		JButton btnAdicionarMusica = new JButton("Adicionar Musica");
 		btnAdicionarMusica.addActionListener(new ActionListener() {
 			
@@ -103,14 +105,14 @@ public class JanelaPlayer extends JFrame {
 				
 				String musica = f.getName();
 				String dados[] = musica.split("-");
+				listModel.addElement(dados[0] + "-" + dados[1]);
 				sistema.addMusica(dados[0], dados[1], f.getPath());
 			}	
 		});
 		btnAdicionarMusica.setBounds(100, 441, 196, 25);
 		contentPane.add(btnAdicionarMusica);
 		
-		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		
+		//LISTA DE MUSICAS
 		for(Musica a : sistema.musicas) {
 			listModel.addElement(a.info());
 		}
@@ -118,14 +120,12 @@ public class JanelaPlayer extends JFrame {
 		list_1.setBounds(100, 180, 196, 224);
 		contentPane.add(list_1);
 		
-		JList list = new JList();
-		list.setBounds(594, 455, 206, -212);
-		contentPane.add(list);
-		
+		//LISTA DE PLAYLISTS
 		JList list_2 = new JList();
 		list_2.setBounds(989, 354, 181, 170);
 		contentPane.add(list_2);
 		
+		//BOTAO PRA ADICONAR PLAYLIST
 		JButton btnNovaPlaylist = new JButton("Nova Playlist");
 		btnNovaPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -135,11 +135,11 @@ public class JanelaPlayer extends JFrame {
 		btnNovaPlaylist.setBounds(1022, 548, 117, 25);
 		contentPane.add(btnNovaPlaylist);
 		
+		//LABEL DAS PLAYLISTS
 		JLabel lblPlaylists = new JLabel("Playlists");
 		lblPlaylists.setBounds(1048, 299, 70, 15);
 		contentPane.add(lblPlaylists);
 		
-			
-		
 	}
+	
 }
