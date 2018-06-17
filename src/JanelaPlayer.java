@@ -58,7 +58,7 @@ public class JanelaPlayer extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JanelaPlayer(Sistema sistema) {
+	public JanelaPlayer(Sistema sistema, String tipo) {
 		cadastro = new JanelaCadastro();
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
 		
@@ -89,7 +89,13 @@ public class JanelaPlayer extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cadastro.setVisible(true);
+				if(tipo.equals("Vip")) {
+					cadastro.setVisible(true);	
+				}
+				else {
+					JOptionPane.showMessageDialog(new JFrame(), "Você não possui acesso a "
+							+ "Cadastrar!", "Acesso não permitido!", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnCadastrar.setBounds(1048, 53, 126, 25);
@@ -140,7 +146,10 @@ public class JanelaPlayer extends JFrame {
 		JButton btnNovaPlaylist = new JButton("Nova Playlist");
 		btnNovaPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//implementar add playlist
+				if(tipo.equals("Comum")) {
+					JOptionPane.showMessageDialog(new JFrame(), "Você não possui acesso a "
+							+ "Criar Playlist!", "Acesso não permitido!", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnNovaPlaylist.setBounds(1022, 548, 117, 25);
@@ -152,5 +161,4 @@ public class JanelaPlayer extends JFrame {
 		contentPane.add(lblPlaylists);
 		
 	}
-	
 }
