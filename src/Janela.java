@@ -59,6 +59,7 @@ public class Janela extends JFrame {
 			}
 
 		});
+		
 	}
 
 	/**
@@ -125,6 +126,7 @@ public class Janela extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(272, 131, 147, 31);
 		contentPane.add(passwordField);
+	//	A.SalvarArquivos();
 		
 	}
 	private class SwingAction extends AbstractAction {

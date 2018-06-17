@@ -19,12 +19,15 @@ import javazoom.jl.player.Player;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JToggleButton;
@@ -104,10 +107,17 @@ public class JanelaPlayer extends JFrame {
 				File f = fc.getSelectedFile();
 				
 				String musica = f.getName();
-				String dados[] = musica.split("-");
-				listModel.addElement(dados[0] + "-" + dados[1]);
-				sistema.addMusica(dados[0], dados[1], f.getPath());
-				System.out.print(musica);
+				if(musica.charAt(musica.length()-1) != '3') {
+					JOptionPane.showMessageDialog(new JFrame(), "O arquivo selecionado "
+							+ "deve ser do tipo '.mp3'.", "Erro!", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					String dados[] = musica.split("-");
+					listModel.addElement(dados[0] + "-" + dados[1]);
+					String a = f.getPath();
+					sistema.addMusica(dados[0], dados[1], f.getPath());
+					System.out.print(musica);
+				}
 			}	
 		});
 		btnAdicionarMusica.setBounds(100, 441, 196, 25);

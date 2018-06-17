@@ -102,7 +102,7 @@ public class Sistema {
 	
 	public void LerArquivos(){
 		try {
-			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"));
+			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos//Usuarios.txt"));
 			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
@@ -126,7 +126,7 @@ public class Sistema {
 			}
 		}
 		try {
-			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"));
+			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt"));
 			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
@@ -153,7 +153,7 @@ public class Sistema {
 	
 	public void SalvarArquivos() {
 		try {
-			writer = new FileWriter(new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"), true);
+			writer = new FileWriter(new File("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"), true);
 			Escrita = new BufferedWriter(writer);
 			for (Usuario B : listaUsuarios) {
 				Escrita.write(B.getLogin() + ":" + B.getSenha() + ":" + B.getEmail() + ":" + B.getTipo());
@@ -168,7 +168,7 @@ public class Sistema {
 		}
 		
 		try {
-			writer = new FileWriter(new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"), true);
+			writer = new FileWriter(new File("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt"), true);
 			Escrita = new BufferedWriter(writer);
 			for (Musica B : musicas) {
 				Escrita.write(B.getArtista() + ":" + B.getNome()  + ":" + B.getLocalizacao());
