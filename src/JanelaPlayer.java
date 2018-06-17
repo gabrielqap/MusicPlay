@@ -107,6 +107,7 @@ public class JanelaPlayer extends JFrame {
 				String dados[] = musica.split("-");
 				listModel.addElement(dados[0] + "-" + dados[1]);
 				sistema.addMusica(dados[0], dados[1], f.getPath());
+				System.out.print(musica);
 			}	
 		});
 		btnAdicionarMusica.setBounds(100, 441, 196, 25);

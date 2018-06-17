@@ -45,16 +45,17 @@ public class Janela extends JFrame {
 				try {
 					Janela frame = new Janela();
 					frame.setVisible(true);
-					Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+					/*Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 
 				        public void run() {
 				            // Do what you want when the application is stopping
 				        	A.SalvarArquivos();
+				        	System.out.print("salvou");
 				        }
-				    }));
+				    })); */
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				} 
 			}
 
 		});

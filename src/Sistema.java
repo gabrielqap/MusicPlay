@@ -153,7 +153,7 @@ public class Sistema {
 	
 	public void SalvarArquivos() {
 		try {
-			writer = new FileWriter(new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"));
+			writer = new FileWriter(new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"), true);
 			Escrita = new BufferedWriter(writer);
 			for (Usuario B : listaUsuarios) {
 				Escrita.write(B.getLogin() + ":" + B.getSenha() + ":" + B.getEmail() + ":" + B.getTipo());
@@ -168,7 +168,7 @@ public class Sistema {
 		}
 		
 		try {
-			writer = new FileWriter(new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"));
+			writer = new FileWriter(new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"), true);
 			Escrita = new BufferedWriter(writer);
 			for (Musica B : musicas) {
 				Escrita.write(B.getArtista() + ":" + B.getNome()  + ":" + B.getLocalizacao());
