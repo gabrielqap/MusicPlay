@@ -104,7 +104,8 @@ public class Sistema {
 	
 	public void LerArquivos(){
 		try {
-			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"));			
+	//		Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"));			
+			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));			
 			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
@@ -128,7 +129,8 @@ public class Sistema {
 			}
 		}
 		try {
-			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"));
+	//		Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"));
+			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt"));
 			if (Users != null) {
 				String line = Users.readLine();
 				String[] dados; 
@@ -157,7 +159,8 @@ public class Sistema {
 	
 	public void SalvarArquivos() {
 		try {
-			writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt");
+	//		writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt");
+			writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt");
 			escrever = new PrintWriter(writer);
 			for (Usuario B : listaUsuarios) {
 				writer.write(B.getLogin() + ":" + B.getSenha() + ":" + B.getEmail() + ":" + B.getTipo());
@@ -180,7 +183,8 @@ public class Sistema {
 		}
 		
 		try {
-			writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt");
+	//		writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt");
+			writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt");
 			escrever = new PrintWriter(writer);
 			for (Musica B : musicas) {
 				writer.write(B.getArtista() + ":" + B.getNome()  + ":" + B.getLocalizacao());

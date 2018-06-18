@@ -92,7 +92,7 @@ public class JanelaPlayer extends JFrame {
 				cadastro.setVisible(true);
 			}
 		});
-		btnCadastrar.setBounds(1048, 53, 126, 25);
+		btnCadastrar.setBounds(989, 84, 126, 25);
 		contentPane.add(btnCadastrar);
 		
 		//BOTAO ADICIONAR MUSICA
@@ -151,6 +151,17 @@ public class JanelaPlayer extends JFrame {
 		lblPlaylists.setBounds(1048, 299, 70, 15);
 		contentPane.add(lblPlaylists);
 		
+		JList list = new JList();
+		list.setBounds(364, 181, 196, 224);
+		contentPane.add(list);
+		
+		JLabel lblMsicas = new JLabel("Músicas");
+		lblMsicas.setBounds(109, 125, 70, 15);
+		contentPane.add(lblMsicas);
+		
+		JLabel lblPlaylistX = new JLabel("Playlist x");
+		lblPlaylistX.setBounds(405, 141, 70, 15);
+		contentPane.add(lblPlaylistX);
+		
 	}
-	
 }
