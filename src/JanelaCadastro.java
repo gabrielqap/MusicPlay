@@ -42,7 +42,7 @@ public class JanelaCadastro extends JFrame{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,7 +53,7 @@ public class JanelaCadastro extends JFrame{
 				}
 			}
 		});
-	}
+	}*/
 	
 	public void ApagaTudo() {
 		textField.setText(null);
@@ -66,9 +66,9 @@ public class JanelaCadastro extends JFrame{
 	 * Create the frame.
 	 */
 	
-	public JanelaCadastro() {
-		B = new Sistema();
-		B.LerArquivos();
+	public JanelaCadastro(Sistema sistema) {
+		//B = new Sistema();
+		//B.LerArquivos();
 		getContentPane().setLayout(null);
 		setSize(450, 300);
 		JLabel lblCadastro = new JLabel("Cadastro");
@@ -155,22 +155,23 @@ public class JanelaCadastro extends JFrame{
 							String email = textField_1.getText();
 							if(chckbxNewCheckBox.isSelected()) {
 								tipo = "Vip";
-								B.addUsuario(usuario, senha1, email, tipo);
+								sistema.addUsuario(usuario, senha1, email, tipo);
 							}
 							else { 
 								tipo = "Comum";
-								B.addUsuario(usuario, senha1, email, tipo);
+								sistema.addUsuario(usuario, senha1, email, tipo);
 							}
-							try {
-								writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt", true);
+							/*try {
+								writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt", true);
 								writer.write(usuario + ":" + senha1 + ":" + email + ":" + tipo);
-								writer.close();
+								writer.close(); 
+								
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
-							}
+							} */
 							ApagaTudo();
-							}
+					}
 					else {
 							System.out.println(pwdS.getPassword());
 							System.out.println(pwdLkzjdlj.getPassword());
@@ -185,7 +186,7 @@ public class JanelaCadastro extends JFrame{
 		
 		
 		
-		btnCadastrar.setBounds(121, 263, 117, 25);
+		btnCadastrar.setBounds(96, 225, 101, 25);
 		getContentPane().add(btnCadastrar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -197,7 +198,7 @@ public class JanelaCadastro extends JFrame{
 				
 			}
 		});
-		btnCancelar.setBounds(265, 263, 117, 25);
+		btnCancelar.setBounds(265, 225, 117, 25);
 		getContentPane().add(btnCancelar);
 		
 		

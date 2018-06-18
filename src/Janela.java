@@ -45,14 +45,14 @@ public class Janela extends JFrame {
 				try {
 					Janela frame = new Janela();
 					frame.setVisible(true);
-					/*Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+					Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 
 				        public void run() {
 				            // Do what you want when the application is stopping
 				        	A.SalvarArquivos();
 				        	System.out.print("salvou");
 				        }
-				    })); */
+				    })); 
 				} catch (Exception e) {
 					e.printStackTrace();
 				} 
@@ -69,7 +69,7 @@ public class Janela extends JFrame {
 		A = new Sistema ();
 //		A.LerArquivos();
 		player = new JanelaPlayer(A);
-		cadastro = new JanelaCadastro();		
+		//cadastro = new JanelaCadastro();		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

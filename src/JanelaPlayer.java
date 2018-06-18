@@ -59,7 +59,7 @@ public class JanelaPlayer extends JFrame {
 	 * Create the frame.
 	 */
 	public JanelaPlayer(Sistema sistema) {
-		cadastro = new JanelaCadastro();
+		cadastro = new JanelaCadastro(sistema);
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
 		
 		/*try{
