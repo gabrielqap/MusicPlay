@@ -33,6 +33,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JToggleButton;
 import javax.swing.ListModel;
 import javax.swing.JTextPane;
+import javax.swing.JScrollBar;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 public class JanelaPlayer extends JFrame {
 	private JanelaCadastro cadastro;
@@ -61,6 +64,8 @@ public class JanelaPlayer extends JFrame {
 	public JanelaPlayer(Sistema sistema) {
 		cadastro = new JanelaCadastro(sistema);
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		DefaultListModel<String> listMusicaPL = new DefaultListModel<String>();
+		DefaultListModel<String> listPlaylists = new DefaultListModel<String>();
 		
 		/*try{
             FileInputStream stream = new FileInputStream("");
@@ -143,25 +148,56 @@ public class JanelaPlayer extends JFrame {
 				//implementar add playlist
 			}
 		});
-		btnNovaPlaylist.setBounds(1022, 548, 117, 25);
+		btnNovaPlaylist.setBounds(1027, 591, 117, 25);
 		contentPane.add(btnNovaPlaylist);
 		
 		//LABEL DAS PLAYLISTS
 		JLabel lblPlaylists = new JLabel("Playlists");
 		lblPlaylists.setBounds(1048, 299, 70, 15);
 		contentPane.add(lblPlaylists);
-		
-		JList list = new JList();
-		list.setBounds(364, 181, 196, 224);
-		contentPane.add(list);
-		
+			
 		JLabel lblMsicas = new JLabel("Músicas");
 		lblMsicas.setBounds(109, 125, 70, 15);
 		contentPane.add(lblMsicas);
 		
 		JLabel lblPlaylistX = new JLabel("Playlist x");
-		lblPlaylistX.setBounds(405, 141, 70, 15);
+		lblPlaylistX.setBounds(658, 139, 70, 15);
 		contentPane.add(lblPlaylistX);
 		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(279, 180, 17, 176);
+		contentPane.add(scrollBar);
+		
+		JScrollBar scrollBar_1 = new JScrollBar();
+		scrollBar_1.setBounds(767, 180, 17, 48);
+		contentPane.add(scrollBar_1);
+		
+		JScrollBar scrollBar_2 = new JScrollBar();
+		scrollBar_2.setBounds(1153, 354, 17, 48);
+		contentPane.add(scrollBar_2);
+		
+		JButton btnAdicionarNaPlaylist = new JButton("Adicionar na playlist");
+		btnAdicionarNaPlaylist.setBounds(367, 205, 147, 23);
+		contentPane.add(btnAdicionarNaPlaylist);
+		btnAdicionarNaPlaylist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//implementar add playlist
+				//System.out.println(list_1.getSelectedValue());
+				listMusicaPL.addElement(list_1.getSelectedValue());
+			}
+		});
+		JList list = new JList(listMusicaPL);
+		list.setBounds(588, 180, 196, 224);
+		contentPane.add(list);
+		
+		JButton btnSelecionarPlaylist = new JButton("Selecionar Playlist");
+		btnSelecionarPlaylist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSelecionarPlaylist.setBounds(1027, 543, 117, 23);
+		contentPane.add(btnSelecionarPlaylist);
+		
 	}
+	
 }

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
@@ -65,7 +66,7 @@ public class Sistema {
 		try {
 			Usuario x;
 			if(ProcuraUsuario(login_)) {
-				throw new Exception("Usuario já existente!");
+				throw new Exception("Usuario jÃ¡ existente!");
 			}
 			else {
 				if(tipo == "Vip") {
@@ -96,7 +97,7 @@ public class Sistema {
 	public void addMusicaPlayList(String nome) {
 		for (PlayList x : playlist) {
 			if(x.getNome().equals(nome)) {
-				//implementar a adição da musica
+				//implementar a adiÃ§Ã£o da musica
 			}
 		}
 		
@@ -104,8 +105,8 @@ public class Sistema {
 	
 	public void LerArquivos(){
 		try {
-	//		Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"));			
-			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));			
+			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"));			
+			//Users = new BufferedReader(new FileReader("/home/gabriel/Ã�rea de Trabalho/MusicPlay/arquivos/Usuarios.txt"));			
 			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
@@ -129,8 +130,8 @@ public class Sistema {
 			}
 		}
 		try {
-	//		Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"));
-			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt"));
+			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"));
+			//Users = new BufferedReader(new FileReader("/home/gabriel/Ã�rea de Trabalho/MusicPlay/arquivos/musicas.txt"));
 			if (Users != null) {
 				String line = Users.readLine();
 				String[] dados; 
@@ -155,12 +156,62 @@ public class Sistema {
 				
 			}
 		}
+		try {
+			File f = new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos");
+			FilenameFilter textFilter = new FilenameFilter() {
+				public boolean accept(File dir, String name) {
+					String lowercaseName = name.toLowerCase();
+					if (lowercaseName.endsWith(".txt")) {
+						return true;
+					} else {
+						return false;
+					}
+				}
+			}; 
+			File[] files = f.listFiles(textFilter);
+			String dados[];
+			String nomePL;
+			PlayList pl;
+			Musica m;
+			for (File file : files) {
+				dados = file.getName().split("_");
+				if(dados[0].equals("playlist")) {
+					//System.out.println(file.getName());
+					nomePL = dados[1].split("\\.")[0];
+					System.out.println(nomePL);
+					pl = new PlayList(nomePL);
+					Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/playlist_" + playlist + ".txt"));
+					//Users = new BufferedReader(new FileReader("/home/gabriel/Ã�rea de Trabalho/MusicPlay/arquivos/musicas.txt"));
+					if (Users != null) {
+						String line = Users.readLine();
+						String[] dados_2; 
+						while (line != null) {
+							dados = line.split(":");
+							m = new Musica(dados[1], dados[0], dados[2]);
+							pl.addMusica(m);
+							line = Users.readLine();
+						}		
+					}
+					playlist.add(pl);	
+				}
+				
+			}
+		
+		}catch (FileNotFoundException e) {
+			System.out.println("Erro na leitura do arquivo!\n");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Erro na leitura do arquivo!\n");
+			e.printStackTrace();
+		} finally { 			
+			
+		}
 	}
 	
 	public void SalvarArquivos() {
 		try {
-	//		writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt");
-			writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt");
+			writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt");
+			//writer = new FileWriter("/home/gabriel/Ã�rea de Trabalho/MusicPlay/arquivos/Usuarios.txt");
 			escrever = new PrintWriter(writer);
 			for (Usuario B : listaUsuarios) {
 				writer.write(B.getLogin() + ":" + B.getSenha() + ":" + B.getEmail() + ":" + B.getTipo());
@@ -183,8 +234,8 @@ public class Sistema {
 		}
 		
 		try {
-	//		writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt");
-			writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt");
+			writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt");
+			//writer = new FileWriter("/home/gabriel/rea de Trabalho/MusicPlay/arquivos/musicas.txt");
 			escrever = new PrintWriter(writer);
 			for (Musica B : musicas) {
 				writer.write(B.getArtista() + ":" + B.getNome()  + ":" + B.getLocalizacao());
