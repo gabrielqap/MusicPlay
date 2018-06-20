@@ -49,8 +49,7 @@ public class Janela extends JFrame {
 
 				        public void run() {
 				            // Do what you want when the application is stopping
-				        	A.SalvarArquivos();
-				        	System.out.print("salvou");
+				        	A.SalvarArquivos();				        	
 				        }
 				    })); 
 				} catch (Exception e) {
@@ -126,7 +125,7 @@ public class Janela extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(272, 131, 147, 31);
 		contentPane.add(passwordField);
-	//	A.SalvarArquivos();
+	
 		
 	}
 	private class SwingAction extends AbstractAction {

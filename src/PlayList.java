@@ -2,7 +2,7 @@ import java.util.LinkedList;
 
 public class PlayList {
 	private String nome;
-	private LinkedList<Musica> musicas;
+	public LinkedList<Musica> musicas;
 	
 	
 	public PlayList(String n) {
