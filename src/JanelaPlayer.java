@@ -32,6 +32,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JToggleButton;
 import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 import javax.swing.JTextPane;
 import javax.swing.JScrollBar;
 import javax.swing.AbstractAction;
@@ -179,6 +180,7 @@ public class JanelaPlayer extends JFrame {
 		scrollBar_2.setBounds(1153, 354, 17, 48);
 		contentPane.add(scrollBar_2);
 		
+		//ADICIONA MUSICA NA PLAYLIST SELECIONADA
 		JButton btnAdicionarNaPlaylist = new JButton("Adicionar na playlist");
 		btnAdicionarNaPlaylist.setBounds(367, 205, 147, 23);
 		contentPane.add(btnAdicionarNaPlaylist);
@@ -191,7 +193,6 @@ public class JanelaPlayer extends JFrame {
 					if(m.info().equals((String) list_1.getSelectedValue())) {
 						for(PlayList pl : sistema.playlist) {
 							if(pl.getNome().equals(lblPlaylistX.getText())) {
-								System.out.println("adicionou : " );
 								pl.addMusica(m);
 							}
 						}
@@ -203,6 +204,7 @@ public class JanelaPlayer extends JFrame {
 		list.setBounds(588, 180, 196, 224);
 		contentPane.add(list);
 		
+		//SELECIONA PLAYLIST
 		JButton btnSelecionarPlaylist = new JButton("Selecionar Playlist");
 		btnSelecionarPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -213,10 +215,12 @@ public class JanelaPlayer extends JFrame {
 				for(PlayList pl : sistema.playlist) {
 					if(pl.getNome().equals(lblPlaylistX.getName())) {
 						for(Musica m : pl.musicas) {
-							pl.addMusica(m);
+							//pl.addMusica(m);
+							listMusicaPL.addElement(m.info());
 						}
 					}
 				}
+				list.setModel(listMusicaPL);
 			}
 		});
 		btnSelecionarPlaylist.setBounds(1027, 543, 117, 23);
