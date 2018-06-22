@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -42,6 +44,10 @@ public class JanelaPlayer extends JFrame {
 	private JanelaCadastro cadastro;
 	private JPanel contentPane;
 	private Player player;
+	String tipo_;
+	public void Erro() {
+			JOptionPane.showMessageDialog(rootPane, "Você não possui acesso!", "Erro!", JOptionPane.ERROR_MESSAGE, null);
+	}
 
 	/**
 	 * Launch the application.
@@ -62,7 +68,7 @@ public class JanelaPlayer extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JanelaPlayer(Sistema sistema) {
+	public JanelaPlayer(Sistema sistema, String tipo) {
 		cadastro = new JanelaCadastro(sistema);
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
 		DefaultListModel<String> listMusicaPL = new DefaultListModel<String>();
@@ -95,7 +101,12 @@ public class JanelaPlayer extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cadastro.setVisible(true);
+				if(tipo.equals("Comum")) {
+					Erro();
+				}
+				else {
+					cadastro.setVisible(true);
+				}
 			}
 		});
 		btnCadastrar.setBounds(989, 84, 126, 25);
@@ -149,10 +160,13 @@ public class JanelaPlayer extends JFrame {
 		JButton btnNovaPlaylist = new JButton("Nova Playlist");
 		btnNovaPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(tipo.equals("Comum")) {
+					Erro();
+				}
 				//implementar add playlist
 			}
 		});
-		btnNovaPlaylist.setBounds(1027, 591, 117, 25);
+		btnNovaPlaylist.setBounds(989, 591, 165, 25);
 		contentPane.add(btnNovaPlaylist);
 		
 		//LABEL DAS PLAYLISTS
@@ -182,50 +196,94 @@ public class JanelaPlayer extends JFrame {
 		
 		//ADICIONA MUSICA NA PLAYLIST SELECIONADA
 		JButton btnAdicionarNaPlaylist = new JButton("Adicionar na playlist");
-		btnAdicionarNaPlaylist.setBounds(367, 205, 147, 23);
+		btnAdicionarNaPlaylist.setBounds(367, 203, 181, 25);
 		contentPane.add(btnAdicionarNaPlaylist);
 		btnAdicionarNaPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(tipo.equals("Comum")) {
+					Erro();
+				}
 				//implementar add playlist
 				//System.out.println(list_1.getSelectedValue());
-				listMusicaPL.addElement(list_1.getSelectedValue());
-				for (Musica m : sistema.musicas) {
-					if(m.info().equals((String) list_1.getSelectedValue())) {
-						for(PlayList pl : sistema.playlist) {
-							if(pl.getNome().equals(lblPlaylistX.getText())) {
-								pl.addMusica(m);
+				else {
+					listMusicaPL.addElement(list_1.getSelectedValue());
+					for (Musica m : sistema.musicas) {
+						if(m.info().equals((String) list_1.getSelectedValue())) {
+							for(PlayList pl : sistema.playlist) {
+								if(pl.getNome().equals(lblPlaylistX.getText())) {
+									pl.addMusica(m);
+								}
 							}
 						}
-					}
-				}				
+					}	
+				}
 			}
 		});
-		JList list = new JList(listMusicaPL);
-		list.setBounds(588, 180, 196, 224);
-		contentPane.add(list);
+		JList<String> list2 = new JList<String>(listMusicaPL);
+		list2.setBounds(588, 180, 196, 224);
+		contentPane.add(list2);
 		
 		//SELECIONA PLAYLIST
 		JButton btnSelecionarPlaylist = new JButton("Selecionar Playlist");
 		btnSelecionarPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println((String) list_2.getSelectedValue());
-				//String nomeDaPlaylist = (String) list_2.getSelectedValue();
-				lblPlaylistX.setText((String) list_2.getSelectedValue());
-				listMusicaPL.clear();
-				for(PlayList pl : sistema.playlist) {
-					if(pl.getNome().equals(lblPlaylistX.getName())) {
-						for(Musica m : pl.musicas) {
-							//pl.addMusica(m);
-							listMusicaPL.addElement(m.info());
+				if(tipo.equals("Comum")) {
+					Erro();
+				}
+				else {
+					lblPlaylistX.setText((String) list_2.getSelectedValue());
+					listMusicaPL.clear();
+					for(PlayList pl : sistema.playlist) {
+						if(pl.getNome().equals(lblPlaylistX.getText())) {
+							for(Musica m : pl.musicas) {
+								//pl.addMusica(m);
+								listMusicaPL.addElement(m.info());
+							
+							}
+						}
+						list2.setModel(listMusicaPL);
+					}	
+				}
+			}
+		});
+		btnSelecionarPlaylist.setBounds(989, 543, 165, 23);
+		contentPane.add(btnSelecionarPlaylist);
+		
+		JButton RemoverDaPlaylist = new JButton("Remover da playlist");
+		RemoverDaPlaylist.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(tipo.equals("Comum")) {
+					Erro();
+				}
+				
+				
+			}
+		});
+		RemoverDaPlaylist.setBounds(588, 441, 193, 25);
+		contentPane.add(RemoverDaPlaylist);
+		
+		JButton btnNewButton = new JButton("Remover Playlist");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tipo.equals("Comum")) {
+					Erro();
+				}
+				else {
+					String playlistRemov = (String) list_2.getSelectedValue();
+					for(PlayList pl : sistema.playlist) {
+						if(pl.getNome().equals(playlistRemov)){
+							sistema.playlist.remove(pl);
+							System.out.println(list_2.getSelectedIndex());
+							listPlaylists.removeElement(list_2.getSelectedValue());
 						}
 					}
 				}
-				list.setModel(listMusicaPL);
 			}
 		});
-		btnSelecionarPlaylist.setBounds(1027, 543, 117, 23);
-		contentPane.add(btnSelecionarPlaylist);
+		btnNewButton.setBounds(989, 628, 165, 25);
+		contentPane.add(btnNewButton);
 		
 	}
-	
 }

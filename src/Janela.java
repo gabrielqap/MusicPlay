@@ -67,7 +67,6 @@ public class Janela extends JFrame {
 	public Janela() {
 		A = new Sistema ();
 //		A.LerArquivos();
-		player = new JanelaPlayer(A);
 		//cadastro = new JanelaCadastro();		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -106,6 +105,7 @@ public class Janela extends JFrame {
 				String s = passwordField.getText();
 				
 				if (A.VerificaUsuario(l, s) == "Comum" || A.VerificaUsuario(l, s) == "Vip" ) {
+					player = new JanelaPlayer(A,A.VerificaUsuario(l, s));
 					player.setVisible(true);
 					setVisible(false);
 				}
