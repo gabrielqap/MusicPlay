@@ -31,6 +31,10 @@ public class Musica {
 			return artista;
 		}
 		
+		public void setArtista(String artista) {
+			this.artista = artista;
+		}
+		
 		public String info() {
 			return getArtista() + " - " + getNome(); 
 		}

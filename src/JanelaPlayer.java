@@ -74,18 +74,7 @@ public class JanelaPlayer extends JFrame {
 		DefaultListModel<String> listMusicaPL = new DefaultListModel<String>();
 		DefaultListModel<String> listPlaylists = new DefaultListModel<String>();
 		
-		/*try{
-            FileInputStream stream = new FileInputStream("");
-            BufferedInputStream buffer = new BufferedInputStream(stream);
-            this.player = new Player (buffer);
-            System.out.println("Executando...");
-           // this.player.play();
-            System.out.println("Terminado");
-        } catch (Exception e) {
-            System.out.println("Erro!");
-            e.printStackTrace();
-        }*/
-    	
+			
 		
 		this.setTitle("Music Player");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -133,7 +122,7 @@ public class JanelaPlayer extends JFrame {
 					listModel.addElement(dados[0] + "-" + dados[1]);
 					String a = f.getPath();
 					sistema.addMusica(dados[0], dados[1], f.getPath());
-					System.out.print(musica);
+					//System.out.print(musica);
 				}
 			}	
 		});
@@ -261,19 +250,30 @@ public class JanelaPlayer extends JFrame {
 				else {
 					String Music = ((String) list2.getSelectedValue());
 					listMusicaPL.removeElement(Music);;
-					for (Musica m : sistema.musicas) {
+					for(PlayList pl : sistema.playlist) {
+						if(pl.getNome().equals(lblPlaylistX.getText())) {									
+							for(Musica M : pl.musicas) {							
+								if(M.info().equals(Music)) {													
+									pl.RemoveMusica(M);
+								}
+							}
+						}
+					}
+					/*for (Musica m : sistema.musicas) {
 						if(m.info().equals(Music)) {
 							for(PlayList pl : sistema.playlist) {
-								if(pl.getNome().equals(lblPlaylistX.getText())) {
+								if(pl.getNome().equals(lblPlaylistX.getText())) {									
 									for(Musica M : pl.musicas) {
-										if(M.getNome().equals(lblPlaylistX.getText())) {
+										System.out.println(M.info()  + " e " + list2.getSelectedValue());
+										if(M.info().equals(list2.getSelectedValue())) {											
+											System.out.println("removeu: " + M.info());
 											pl.RemoveMusica(M);
 										}
 									}
 								}
 							}
 						}
-					}	
+					}*/	
 					list2.setModel(listMusicaPL);
 					
 				}
@@ -304,6 +304,37 @@ public class JanelaPlayer extends JFrame {
 		});
 		btnNewButton.setBounds(989, 628, 165, 25);
 		contentPane.add(btnNewButton);
+		
+		JButton btnTocarMusica = new JButton("Tocar musica");
+		btnTocarMusica.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				try{
+				String musica = list_1.getSelectedValue();	
+				Musica m = null;
+				for(Musica x : sistema.musicas) {
+					if(x.info().equals(musica)) {
+						//m = new Musica(x.getNome(), x.getArtista(), x.getLocalizacao());
+						m.setNome(x.getNome());
+						m.setArtista(x.getArtista());
+						m.setLocalizacao(x.getLocalizacao());
+					}
+				}
+				System.out.println(m.getLocalizacao());
+	            FileInputStream stream = new FileInputStream(m.getLocalizacao());
+	            BufferedInputStream buffer = new BufferedInputStream(stream);
+	            player = new Player (buffer);
+	            System.out.println("Executando...");
+	           // this.player.play();
+	            System.out.println("Terminado");
+	        } catch (Exception error) {
+	            System.out.println("Erro!");
+	            error.printStackTrace();
+	        }
+			}
+		});
+		btnTocarMusica.setBounds(367, 351, 181, 23);
+		contentPane.add(btnTocarMusica);
 		
 	}
 }

@@ -30,7 +30,7 @@ public class Sistema {
 	public void RemovePlaylist(PlayList play_) {
 		playlist.remove(play_);
 	}
-	// mudei pra boleano, pq a antiga nao tava funcionando no VerificaUsuario	
+		
 	public boolean ProcuraUsuario(String login_) {
 		for(Usuario x : listaUsuarios) {
 			if (x.getLogin() == login_) {
@@ -41,8 +41,7 @@ public class Sistema {
 	}
 	
 	
-	//@SuppressWarnings("finally")
-	//tirei o try pra dar uma modificada, acho que da pra colocar dps ainda
+	
 	public String VerificaUsuario(String login, String senha) {
 			
 		for (Usuario x : listaUsuarios) {
@@ -109,8 +108,8 @@ public class Sistema {
 				// Ler usuários
 		try {
 			//Users = new BufferedReader(new FileReader("/home/talles/bti/lp2/MusicPlay/arquivos/Usuarios.txt"));
-			//Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"));			
-			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));			
+			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"));			
+			//Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));			
 			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
@@ -136,8 +135,8 @@ public class Sistema {
 		try {
 				// Ler músicas
 			//Users = new BufferedReader(new FileReader("/home/talles/bti/lp2/MusicPlay/arquivos/musicas.txt"));
-			//Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"));
-			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt"));
+			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"));
+			//Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt"));
 			if (Users != null) {
 				String line = Users.readLine();
 				String[] dados; 
@@ -165,8 +164,8 @@ public class Sistema {
 		try {
 			
 			//File f = new File("/home/talles/bti/lp2/MusicPlay/arquivos/");
-			//File f = new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos");		
-			File f = new File("/home/gabriel/Área de Trabalho/MusicPlay/arquivos");
+			File f = new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos");		
+			//File f = new File("/home/gabriel/Área de Trabalho/MusicPlay/arquivos");
 			FilenameFilter textFilter = new FilenameFilter() {
 				public boolean accept(File dir, String name) {
 					String lowercaseName = name.toLowerCase();
@@ -188,8 +187,8 @@ public class Sistema {
 					nomePL = dados[1].split("\\.")[0];
 					pl = new PlayList(nomePL);
 					//Users = new BufferedReader(new FileReader("/home/talles/bti/lp2/MusicPlay/arquivos/playlist_" + nomePL + ".txt"));
-			//		Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/playlist_" + nomePL + ".txt"));
-					Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/playlist_" + nomePL + ".txt"));
+					Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/playlist_" + nomePL + ".txt"));
+					//Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/playlist_" + nomePL + ".txt"));
 					if (Users != null) {
 						String line = Users.readLine();
 						String[] dados_2; 
@@ -219,8 +218,8 @@ public class Sistema {
 	public void SalvarArquivos() {
 		try {
 			//writer = new FileWriter("/home/talles/bti/lp2/MusicPlay/arquivos/Usuarios.txt");
-		//	writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt");
-			writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt");
+			writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt");
+			//writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt");
 			escrever = new PrintWriter(writer);
 			for (Usuario B : listaUsuarios) {
 				writer.write(B.getLogin() + ":" + B.getSenha() + ":" + B.getEmail() + ":" + B.getTipo());
@@ -244,8 +243,8 @@ public class Sistema {
 		
 		try {
 			//writer = new FileWriter("/home/talles/bti/lp2/MusicPlay/arquivos/musicas.txt");
-	//		writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt");
-			writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt");
+			writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt");
+			//writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt");
 			escrever = new PrintWriter(writer);
 			for (Musica B : musicas) {
 				writer.write(B.getArtista() + ":" + B.getNome()  + ":" + B.getLocalizacao());
@@ -269,8 +268,8 @@ public class Sistema {
 		
 		try {
 			//File f = new File("/home/talles/bti/lp2/MusicPlay/arquivos/");
-	//		File f = new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos");
-			File f = new File("/home/gabriel/Área de Trabalho/MusicPlay/arquivos");
+			File f = new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos");
+			//File f = new File("/home/gabriel/Área de Trabalho/MusicPlay/arquivos");
 			FilenameFilter textFilter = new FilenameFilter() {
 				public boolean accept(File dir, String name) {
 					String lowercaseName = name.toLowerCase();
@@ -286,6 +285,8 @@ public class Sistema {
 			String nomePL;
 			PlayList pl;
 			Musica m;
+			
+			
 			for (File file : files) {
 				dados = file.getName().split("_");
 				if(dados[0].equals("playlist")) {
@@ -294,13 +295,14 @@ public class Sistema {
 					for (PlayList x : playlist) {
 						if(x.getNome().equals(nomePL)) {
 							//writer = new FileWriter("/home/talles/bti/lp2/MusicPlay/arquivos/playlist_" + nomePL + ".txt");
-						//	writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/playlist_" + nomePL + ".txt");
-							writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/playlist_" + nomePL + ".txt", true);
+							writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/playlist_" + nomePL + ".txt", false);
+							//writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/playlist_" + nomePL + ".txt", true);
 							escrever = new PrintWriter(writer);
 							for (Musica B : x.musicas) {								
 								writer.write(B.getArtista() + ":" + B.getNome()  + ":" + B.getLocalizacao());
 								writer.write(System.lineSeparator());
-								System.out.println("Salvou");
+								
+								//System.out.println("Salvou: " + B.info());
 							}
 						}
 					}						
