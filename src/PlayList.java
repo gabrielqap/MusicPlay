@@ -14,6 +14,10 @@ public class PlayList {
 		musicas.add(m);
 	}
 	
+	public void RemoveMusica(Musica m) {
+		musicas.remove(m);
+	}
+	
 	public String getNome() {
 		return nome;
 	}

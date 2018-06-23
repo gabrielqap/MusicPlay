@@ -295,11 +295,12 @@ public class Sistema {
 						if(x.getNome().equals(nomePL)) {
 							//writer = new FileWriter("/home/talles/bti/lp2/MusicPlay/arquivos/playlist_" + nomePL + ".txt");
 						//	writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/playlist_" + nomePL + ".txt");
-							writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/playlist_" + nomePL + ".txt");
+							writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/playlist_" + nomePL + ".txt", true);
 							escrever = new PrintWriter(writer);
 							for (Musica B : x.musicas) {								
 								writer.write(B.getArtista() + ":" + B.getNome()  + ":" + B.getLocalizacao());
 								writer.write(System.lineSeparator());
+								System.out.println("Salvou");
 							}
 						}
 					}						

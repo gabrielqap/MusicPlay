@@ -152,6 +152,7 @@ public class JanelaPlayer extends JFrame {
 		for(PlayList pl : sistema.playlist) {
 			listPlaylists.addElement(pl.getNome());
 		}
+	
 		JList list_2 = new JList(listPlaylists);
 		list_2.setBounds(989, 354, 181, 170);
 		contentPane.add(list_2);
@@ -256,6 +257,25 @@ public class JanelaPlayer extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(tipo.equals("Comum")) {
 					Erro();
+				}
+				else {
+					String Music = ((String) list2.getSelectedValue());
+					listMusicaPL.removeElement(Music);;
+					for (Musica m : sistema.musicas) {
+						if(m.info().equals(Music)) {
+							for(PlayList pl : sistema.playlist) {
+								if(pl.getNome().equals(lblPlaylistX.getText())) {
+									for(Musica M : pl.musicas) {
+										if(M.getNome().equals(lblPlaylistX.getText())) {
+											pl.RemoveMusica(M);
+										}
+									}
+								}
+							}
+						}
+					}	
+					list2.setModel(listMusicaPL);
+					
 				}
 				
 				
