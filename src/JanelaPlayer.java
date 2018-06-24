@@ -153,6 +153,12 @@ public class JanelaPlayer extends JFrame {
 				if(tipo.equals("Comum")) {
 					Erro();
 				}
+				String nome = "";
+				while(nome.equals("")) {
+					nome = JOptionPane.showInputDialog("Digite o nome da Playlist:");
+					if (nome.equals(""))
+						JOptionPane.showMessageDialog(rootPane,"Nenhuma letra digitada!", "Erro!", JOptionPane.ERROR_MESSAGE, null);
+				}
 				//implementar add playlist
 			}
 		});
