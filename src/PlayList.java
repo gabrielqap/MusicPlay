@@ -15,7 +15,9 @@ public class PlayList {
 	}
 	
 	public void RemoveMusica(Musica m) {
-		musicas.remove(m);
+		if(musicas.contains(m)) {
+			musicas.remove(m);
+		}
 	}
 	
 	public String getNome() {

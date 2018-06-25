@@ -125,6 +125,8 @@ public class JanelaPlayer extends JFrame {
 				}
 				else {
 					String dados[] = musica.split("-");
+					dados[0].replaceAll(" ", "");
+					dados[1].replaceAll(" ", "");
 					listModel.addElement(dados[0] + "-" + dados[1]);
 					String a = f.getPath();
 					sistema.addMusica(dados[0], dados[1], f.getPath());
@@ -339,6 +341,8 @@ public class JanelaPlayer extends JFrame {
 							deletar.delete();
 						}
 					}
+					listMusicaPL.clear();
+					lblPlaylistX.setText("Playlist X");
 				}
 			}
 		});
@@ -376,6 +380,44 @@ public class JanelaPlayer extends JFrame {
 		});
 		btnTocarMusica.setBounds(367, 351, 181, 23);
 		contentPane.add(btnTocarMusica);
+		
+		JButton btnNewButton_1 = new JButton("Remover Musica");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String musica = (String) list_1.getSelectedValue();
+				String[] dados = musica.split("-");
+				dados[0] = dados[0].replaceAll(" ", "");
+				dados[1] = dados[1].replaceAll(" ", "");
+				for(Musica a : sistema.musicas) {
+					String f,g;
+					f = a.getArtista();
+					f = f.replaceAll(" ", "");
+					g = a.getNome();
+					g = g.replaceAll(" ", "");
+					if(f.equals(dados[0]) && g.equals(dados[1])) {
+						System.out.println("ACHOU!!");
+						sistema.musicas.remove(a);
+						listModel.removeElement(musica);
+						listMusicaPL.removeElement(musica);
+						for(PlayList pl : sistema.playlist) {
+							pl.RemoveMusica(a);
+						}
+					}
+					else {
+						System.out.println("Artista classe:" + a.getArtista());
+						System.out.println("Artista dados:" +  dados[0]);
+						System.out.println("Nome classe:" + a.getNome());
+						System.out.println("Nome dados:" + dados[1]);
+						System.out.println("NÃO ACHOU!!");
+					}
+				}
+				list_1.setModel(listModel);
+			}
+		});
+		btnNewButton_1.setBounds(100, 486, 196, 25);
+		contentPane.add(btnNewButton_1);
 		
 	}
 }

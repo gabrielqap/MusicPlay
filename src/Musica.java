@@ -5,7 +5,7 @@ public class Musica {
 		private String artista;
 		private String Localizacao;
 		
-		public Musica(String n, String a, String l) {
+		public Musica(String a, String n, String l) {
 			Nome = n;
 			artista = a;
 			Localizacao = l;
