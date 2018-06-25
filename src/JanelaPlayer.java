@@ -45,6 +45,9 @@ public class JanelaPlayer extends JFrame {
 	private JPanel contentPane;
 	private Player player;
 	String tipo_;
+	private Mp3Player mp3player;
+	
+	
 	public void Erro() {
 			JOptionPane.showMessageDialog(rootPane, "Você não possui acesso!", "Erro!", JOptionPane.ERROR_MESSAGE, null);
 	}
@@ -70,6 +73,7 @@ public class JanelaPlayer extends JFrame {
 	 */
 	public JanelaPlayer(Sistema sistema, String tipo) {
 		cadastro = new JanelaCadastro(sistema);
+		
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
 		DefaultListModel<String> listMusicaPL = new DefaultListModel<String>();
 		DefaultListModel<String> listPlaylists = new DefaultListModel<String>();
@@ -319,20 +323,21 @@ public class JanelaPlayer extends JFrame {
 				String musica = list_1.getSelectedValue();	
 				Musica m = null;
 				for(Musica x : sistema.musicas) {
-					if(x.info().equals(musica)) {
-						//m = new Musica(x.getNome(), x.getArtista(), x.getLocalizacao());
-						m.setNome(x.getNome());
-						m.setArtista(x.getArtista());
-						m.setLocalizacao(x.getLocalizacao());
+					if(x.info().equals(musica)) {								
+						m = x;						
+						m.setLocalizacao("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/musicas/Mac_DeMarco_-_Jonny_s_Odyssey_(DemoLat.com).mp3");
 					}
 				}
-				System.out.println(m.getLocalizacao());
+				//System.out.println(m.getLocalizacao());
 	            FileInputStream stream = new FileInputStream(m.getLocalizacao());
 	            BufferedInputStream buffer = new BufferedInputStream(stream);
 	            player = new Player (buffer);
 	            System.out.println("Executando...");
-	           // this.player.play();
+	           // player.play();
 	            System.out.println("Terminado");
+	            mp3player = new Mp3Player(player);
+	            mp3player.setVisible(true);
+	            
 	        } catch (Exception error) {
 	            System.out.println("Erro!");
 	            error.printStackTrace();
