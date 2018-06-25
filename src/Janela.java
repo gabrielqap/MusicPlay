@@ -49,7 +49,8 @@ public class Janela extends JFrame {
 
 				        public void run() {
 				            // Do what you want when the application is stopping
-				        	A.SalvarArquivos();				        	
+				        	A.SalvarArquivos();
+				        	
 				        }
 				    })); 
 				} catch (Exception e) {

@@ -163,7 +163,11 @@ public class JanelaPlayer extends JFrame {
 					if (nome.equals(""))
 						JOptionPane.showMessageDialog(rootPane,"Nenhuma letra digitada!", "Erro!", JOptionPane.ERROR_MESSAGE, null);
 				}
-				//implementar add playlist
+				PlayList nova = new PlayList(nome);
+				sistema.playlist.add(nova);
+				listPlaylists.addElement(nome);
+				System.out.println("Criado a playlist de nome : " + nome);
+	
 			}
 		});
 		btnNovaPlaylist.setBounds(989, 591, 165, 25);
