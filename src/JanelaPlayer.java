@@ -27,6 +27,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -162,11 +164,33 @@ public class JanelaPlayer extends JFrame {
 					nome = JOptionPane.showInputDialog("Digite o nome da Playlist:");
 					if (nome.equals(""))
 						JOptionPane.showMessageDialog(rootPane,"Nenhuma letra digitada!", "Erro!", JOptionPane.ERROR_MESSAGE, null);
+					else if(listPlaylists.contains(nome)) {
+						JOptionPane.showMessageDialog(rootPane,"Já contém playlist com esse nome!", "Erro!", JOptionPane.ERROR_MESSAGE, null);
+						nome = "";
+					}
 				}
+			
 				PlayList nova = new PlayList(nome);
 				sistema.playlist.add(nova);
 				listPlaylists.addElement(nome);
-				System.out.println("Criado a playlist de nome : " + nome);
+				
+				FileWriter file = null;
+				try {
+					file = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/playlists/" + nome + 
+							".txt");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				PrintWriter print = new PrintWriter(file);
+				//print.println("");
+				print.close();
+				try {
+					file.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	
 			}
 		});
@@ -309,8 +333,10 @@ public class JanelaPlayer extends JFrame {
 					for(PlayList pl : sistema.playlist) {
 						if(pl.getNome().equals(playlistRemov)){
 							sistema.playlist.remove(pl);
-							System.out.println(list_2.getSelectedIndex());
 							listPlaylists.removeElement(list_2.getSelectedValue());
+							File deletar = new File("/home/gabriel/Área de Trabalho/MusicPlay/playlists/" +
+							playlistRemov + ".txt" );
+							deletar.delete();
 						}
 					}
 				}
@@ -329,7 +355,7 @@ public class JanelaPlayer extends JFrame {
 				for(Musica x : sistema.musicas) {
 					if(x.info().equals(musica)) {								
 						m = x;						
-						m.setLocalizacao("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/musicas/Mac_DeMarco_-_Jonny_s_Odyssey_(DemoLat.com).mp3");
+						m.setLocalizacao("/home/gabriel/Área de Trabalho/MusicPlay/musicas/Mac_DeMarco_-_Jonny_s_Odyssey_(DemoLat.com).mp3");
 					}
 				}
 				//System.out.println(m.getLocalizacao());

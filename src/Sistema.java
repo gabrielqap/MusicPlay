@@ -265,6 +265,7 @@ public class Sistema {
 					String[] partes = j.split("\\.");
 					String nome_playlist = partes[0];
 					for(PlayList pl : playlist) {
+						System.out.println(pl.getNome() + "\n");
 						if(pl.getNome().equals(nome_playlist)) {
 							for(Musica a : pl.musicas) {
 								writer.write(a.getArtista() + ":" + a.getNome() + ":" + a.getLocalizacao());
