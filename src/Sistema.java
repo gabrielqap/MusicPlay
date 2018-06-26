@@ -22,16 +22,29 @@ public class Sistema {
 	FileWriter writer;
 	PrintWriter escrever;
 	
+	/**
+	 * Construtor do sistema MusicPlayer.
+	 */
 	public Sistema() {
 		listaUsuarios = new LinkedList<Usuario>();
 		musicas = new LinkedList<Musica>();
 		playlist = new LinkedList<PlayList>();
 		LerArquivos();
 	}
+	
+	/**
+	 * Funcao que remove uma playlist do sistema.
+	 * @param play_ playlist a ser removida.
+	 */
 	public void RemovePlaylist(PlayList play_) {
 		playlist.remove(play_);
 	}
-		
+	
+	/**
+	 * Funcao que procura um usuario pelo login no sistema
+	 * @param login_ login do usuario a ser procurado
+	 * @return true se login estiver no sistema, false se o login nao estiver no sistema.
+	 */
 	public boolean ProcuraUsuario(String login_) {
 		for(Usuario x : listaUsuarios) {
 			if (x.getLogin() == login_) {
@@ -42,7 +55,12 @@ public class Sistema {
 	}
 	
 	
-	
+	/**
+	 *  Funcao que verifica o tipo de usuario.
+	 * @param login do usuario,
+	 * @param senha do usuario.
+	 * @return tipo do usuario.
+	 */
 	public String VerificaUsuario(String login, String senha) {
 			
 		for (Usuario x : listaUsuarios) {
@@ -64,6 +82,9 @@ public class Sistema {
 		return "Login nao econtrado";
 	}
 	
+	/*
+	 *  Funcao que adiciona o usuario no sistema.
+	 */
 	public void addUsuario(String login_, String senha_, String email_, String tipo) {
 		try {
 			Usuario x;
@@ -85,16 +106,27 @@ public class Sistema {
 			System.out.println(e);
 		}
 	}
-	
+	/**
+	 * Funcao que adiciona uma musica no sistema.
+	 * @param artista 
+	 * @param nome
+	 * @param diretorio onde a musica esta localizada.
+	 */
 	public void addMusica(String artista, String nome, String diretorio) {
 		Musica x = new Musica(artista, nome, diretorio);
 		musicas.add(x);
 	}
-	
+	/**
+	 * funcao que adiciona uma playlist ao sistema.
+	 * @param A playlist a ser adicionada.
+	 */
 	public void addPlayList(PlayList A) {
 		playlist.add(A);
 	}
-	
+	/**
+	 * Funcao que adiciona uma musica na playlist
+	 * @param nome
+	 */
 	public void addMusicaPlayList(String nome) {
 		for (PlayList x : playlist) {
 			if(x.getNome().equals(nome)) {
@@ -103,13 +135,15 @@ public class Sistema {
 		}
 		
 	}
-	
+	/**
+	 * Funcao que carrega os dados quando o sistema é iniciado.
+	 */
 	public void LerArquivos(){
 				// Ler usuários
 		try {
 			//Users = new BufferedReader(new FileReader("/home/talles/bti/lp2/MusicPlay/arquivos/Usuarios.txt"));
-	//		Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"));			
-			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt"));			
+			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt"));			
+			//Users = new BufferedReader(new FileReader("/home/gabriel/area de Trabalho/MusicPlay/arquivos/Usuarios.txt"));			
 			String line = Users.readLine();
 			String[] dados; 
 			while (line != null) {
@@ -135,8 +169,8 @@ public class Sistema {
 		try {
 				// Ler músicas
 			//Users = new BufferedReader(new FileReader("/home/talles/bti/lp2/MusicPlay/arquivos/musicas.txt"));
-	//		Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"));
-			Users = new BufferedReader(new FileReader("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt"));
+			Users = new BufferedReader(new FileReader("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt"));
+			//Users = new BufferedReader(new FileReader("/home/gabriel/area de Trabalho/MusicPlay/arquivos/musicas.txt"));
 			if (Users != null) {
 				String line = Users.readLine();
 				String[] dados; 
@@ -165,8 +199,9 @@ public class Sistema {
 				// LER PLAYLISTS
 			
 			//File f = new File("/home/talles/bti/lp2/MusicPlay/arquivos/");
-			//	File f = new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos");
-				String caminho = "/home/gabriel/Área de Trabalho/MusicPlay/playlists";
+				//File f = new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos");
+				//String caminho = "/home/gabriel/area de Trabalho/MusicPlay/playlists";
+				String caminho = "/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/playlists";
 				File f = new File(caminho);
 				String[] StringDir = f.list();
 				String[] dados;
@@ -201,12 +236,14 @@ public class Sistema {
 			
 		}
 	}
-	
+	/**
+	 * Funcao que guarda os dados quando o sistema é finalizado.
+	 */
 	public void SalvarArquivos() {
 		try {
 			//writer = new FileWriter("/home/talles/bti/lp2/MusicPlay/arquivos/Usuarios.txt");
-			//writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt");
-			writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/Usuarios.txt", false);
+			writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/Usuarios.txt", false);
+			//writer = new FileWriter("/home/gabriel/area de Trabalho/MusicPlay/arquivos/Usuarios.txt", false);
 			escrever = new PrintWriter(writer);
 			for (Usuario B : listaUsuarios) {
 				writer.write(B.getLogin() + ":" + B.getSenha() + ":" + B.getEmail() + ":" + B.getTipo());
@@ -230,8 +267,8 @@ public class Sistema {
 		
 		try {
 			//writer = new FileWriter("/home/talles/bti/lp2/MusicPlay/arquivos/musicas.txt");
-			//writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt");
-			writer = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/arquivos/musicas.txt", false);
+			writer = new FileWriter("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos/musicas.txt");
+			//writer = new FileWriter("/home/gabriel/area de Trabalho/MusicPlay/arquivos/musicas.txt", false);
 			escrever = new PrintWriter(writer);
 			for (Musica B : musicas) {
 				writer.write(B.getArtista() + ":" + B.getNome()  + ":" + B.getLocalizacao());
@@ -256,7 +293,8 @@ public class Sistema {
 		try {
 			//File f = new File("/home/talles/bti/lp2/MusicPlay/arquivos/");
 			//	File f = new File("/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/arquivos");
-				String caminho = "/home/gabriel/Área de Trabalho/MusicPlay/playlists";
+				//String caminho = "/home/gabriel/area de Trabalho/MusicPlay/playlists";
+				String caminho = "/Users/Talle/Desktop/bti/6/lp2/MusicPlayer/playlists";
 				File f = new File(caminho);
 				String[] StringDir = f.list();
 				for(String j : StringDir) {

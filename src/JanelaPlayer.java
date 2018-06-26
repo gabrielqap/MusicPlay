@@ -49,9 +49,11 @@ public class JanelaPlayer extends JFrame {
 	String tipo_;
 	private Mp3Player mp3player;
 	
-	
+	/*
+	 * Funcao de warning para o usuario do tipo comum.
+	 */
 	public void Erro() {
-			JOptionPane.showMessageDialog(rootPane, "Você não possui acesso!", "Erro!", JOptionPane.ERROR_MESSAGE, null);
+			JOptionPane.showMessageDialog(rootPane, "VocÃª nÃ£o possui acesso!", "Erro!", JOptionPane.ERROR_MESSAGE, null);
 	}
 
 	/**
@@ -72,6 +74,8 @@ public class JanelaPlayer extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param sistema Classe sistema a ser passada para o construtor.
+	 * @param tipo tipo do usuario.
 	 */
 	public JanelaPlayer(Sistema sistema, String tipo) {
 		cadastro = new JanelaCadastro(sistema);
@@ -80,7 +84,7 @@ public class JanelaPlayer extends JFrame {
 		DefaultListModel<String> listMusicaPL = new DefaultListModel<String>();
 		DefaultListModel<String> listPlaylists = new DefaultListModel<String>();
 		
-			
+		
 		
 		this.setTitle("Music Player");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,7 +94,9 @@ public class JanelaPlayer extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 				
-		//BOTAO CADASTRAR
+		/**
+		 * Botao para cadastrar um novo usuario ao sistema.
+		 */
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			
@@ -107,7 +113,9 @@ public class JanelaPlayer extends JFrame {
 		btnCadastrar.setBounds(989, 84, 126, 25);
 		contentPane.add(btnCadastrar);
 		
-		//BOTAO ADICIONAR MUSICA
+		/**
+		 * Botao que adiciona uma nova musica ao sistema.
+		 */
 		JButton btnAdicionarMusica = new JButton("Adicionar Musica");
 		btnAdicionarMusica.addActionListener(new ActionListener() {
 			
@@ -119,17 +127,36 @@ public class JanelaPlayer extends JFrame {
 				File f = fc.getSelectedFile();
 				
 				String musica = f.getName();
+				
+				boolean verifica = true;
 				if(musica.charAt(musica.length()-1) != '3') {
 					JOptionPane.showMessageDialog(new JFrame(), "O arquivo selecionado "
 							+ "deve ser do tipo '.mp3'.", "Erro!", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
+					
 					String dados[] = musica.split("-");
 					dados[0].replaceAll(" ", "");
 					dados[1].replaceAll(" ", "");
-					listModel.addElement(dados[0] + "-" + dados[1]);
-					String a = f.getPath();
-					sistema.addMusica(dados[0], dados[1], f.getPath());
+					
+					for(Musica l : sistema.musicas) {
+						if(l.getNome().equals(dados[1])) {
+							JOptionPane.showMessageDialog(new JFrame(), "Essa música já "
+									+ "existe no sistema.","Erro!", JOptionPane.ERROR_MESSAGE);
+							verifica = false;
+						}
+					}
+					if(verifica) {
+						//String a = f.getPath();
+						listModel.addElement(dados[0] + "-" + dados[1]);
+						sistema.addMusica(dados[0], dados[1], f.getPath());
+					}
+					
+					
+					
+					//String a = f.getPath();
+					
+					//sistema.addMusica(dados[0], dados[1], f.getPath());
 					//System.out.print(musica);
 				}
 			}	
@@ -137,7 +164,9 @@ public class JanelaPlayer extends JFrame {
 		btnAdicionarMusica.setBounds(100, 441, 196, 25);
 		contentPane.add(btnAdicionarMusica);
 		
-		//LISTA DE MUSICAS
+		/**
+		 * Lista de musica do sistema para uma lista.
+		 */
 		for(Musica a : sistema.musicas) {
 			listModel.addElement(a.info());
 		}
@@ -145,7 +174,9 @@ public class JanelaPlayer extends JFrame {
 		list_1.setBounds(100, 180, 196, 224);
 		contentPane.add(list_1);
 		
-		//LISTA DE PLAYLISTS
+		/**
+		 * Lista de playlists do sistema
+		 */
 		for(PlayList pl : sistema.playlist) {
 			listPlaylists.addElement(pl.getNome());
 		}
@@ -154,7 +185,9 @@ public class JanelaPlayer extends JFrame {
 		list_2.setBounds(989, 354, 181, 170);
 		contentPane.add(list_2);
 		
-		//BOTAO PRA ADICONAR PLAYLIST
+		/**
+		 * Botao que adiciona uma nova playlist.
+		 */
 		JButton btnNovaPlaylist = new JButton("Nova Playlist");
 		btnNovaPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -167,7 +200,7 @@ public class JanelaPlayer extends JFrame {
 					if (nome.equals(""))
 						JOptionPane.showMessageDialog(rootPane,"Nenhuma letra digitada!", "Erro!", JOptionPane.ERROR_MESSAGE, null);
 					else if(listPlaylists.contains(nome)) {
-						JOptionPane.showMessageDialog(rootPane,"Já contém playlist com esse nome!", "Erro!", JOptionPane.ERROR_MESSAGE, null);
+						JOptionPane.showMessageDialog(rootPane,"JÃ¡ contÃ©m playlist com esse nome!", "Erro!", JOptionPane.ERROR_MESSAGE, null);
 						nome = "";
 					}
 				}
@@ -178,7 +211,7 @@ public class JanelaPlayer extends JFrame {
 				
 				FileWriter file = null;
 				try {
-					file = new FileWriter("/home/gabriel/Área de Trabalho/MusicPlay/playlists/" + nome + 
+					file = new FileWriter("/home/gabriel/Ã�rea de Trabalho/MusicPlay/playlists/" + nome + 
 							".txt");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -204,7 +237,7 @@ public class JanelaPlayer extends JFrame {
 		lblPlaylists.setBounds(1048, 299, 70, 15);
 		contentPane.add(lblPlaylists);
 			
-		JLabel lblMsicas = new JLabel("Músicas");
+		JLabel lblMsicas = new JLabel("MÃºsicas");
 		lblMsicas.setBounds(109, 125, 70, 15);
 		contentPane.add(lblMsicas);
 		
@@ -224,7 +257,13 @@ public class JanelaPlayer extends JFrame {
 		scrollBar_2.setBounds(1153, 354, 17, 48);
 		contentPane.add(scrollBar_2);
 		
-		//ADICIONA MUSICA NA PLAYLIST SELECIONADA
+		JList<String> list2 = new JList<String>(listMusicaPL);
+		list2.setBounds(588, 180, 196, 224);
+		contentPane.add(list2);	
+		
+		/**
+		 * Botao para adicionar uma musica em uma playlist.
+		 */
 		JButton btnAdicionarNaPlaylist = new JButton("Adicionar na playlist");
 		btnAdicionarNaPlaylist.setBounds(367, 203, 181, 25);
 		contentPane.add(btnAdicionarNaPlaylist);
@@ -237,6 +276,7 @@ public class JanelaPlayer extends JFrame {
 				//System.out.println(list_1.getSelectedValue());
 				else {
 					listMusicaPL.addElement(list_1.getSelectedValue());
+					list2.setModel(listMusicaPL);
 					for (Musica m : sistema.musicas) {
 						if(m.info().equals((String) list_1.getSelectedValue())) {
 							for(PlayList pl : sistema.playlist) {
@@ -249,11 +289,11 @@ public class JanelaPlayer extends JFrame {
 				}
 			}
 		});
-		JList<String> list2 = new JList<String>(listMusicaPL);
-		list2.setBounds(588, 180, 196, 224);
-		contentPane.add(list2);
+
 		
-		//SELECIONA PLAYLIST
+		/**
+		 * Botao que seleciona uma playlist.
+		 */
 		JButton btnSelecionarPlaylist = new JButton("Selecionar Playlist");
 		btnSelecionarPlaylist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -278,7 +318,9 @@ public class JanelaPlayer extends JFrame {
 		});
 		btnSelecionarPlaylist.setBounds(989, 543, 165, 23);
 		contentPane.add(btnSelecionarPlaylist);
-		
+		/**
+		 * Botao que remove uma musica da playlist.
+		 */
 		JButton RemoverDaPlaylist = new JButton("Remover da playlist");
 		RemoverDaPlaylist.addActionListener(new ActionListener() {
 			
@@ -323,7 +365,9 @@ public class JanelaPlayer extends JFrame {
 		});
 		RemoverDaPlaylist.setBounds(588, 441, 193, 25);
 		contentPane.add(RemoverDaPlaylist);
-		
+		/**
+		 * Botao que remove uma playlist
+		 */
 		JButton btnNewButton = new JButton("Remover Playlist");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -336,7 +380,7 @@ public class JanelaPlayer extends JFrame {
 						if(pl.getNome().equals(playlistRemov)){
 							sistema.playlist.remove(pl);
 							listPlaylists.removeElement(list_2.getSelectedValue());
-							File deletar = new File("/home/gabriel/Área de Trabalho/MusicPlay/playlists/" +
+							File deletar = new File("/home/gabriel/Ã�rea de Trabalho/MusicPlay/playlists/" +
 							playlistRemov + ".txt" );
 							deletar.delete();
 						}
@@ -348,7 +392,9 @@ public class JanelaPlayer extends JFrame {
 		});
 		btnNewButton.setBounds(989, 628, 165, 25);
 		contentPane.add(btnNewButton);
-		
+		/**
+		 * Botao que toca a musica selecionada.
+		 */
 		JButton btnTocarMusica = new JButton("Tocar musica");
 		btnTocarMusica.addActionListener(new ActionListener() {
 
@@ -359,7 +405,7 @@ public class JanelaPlayer extends JFrame {
 				for(Musica x : sistema.musicas) {
 					if(x.info().equals(musica)) {								
 						m = x;						
-						m.setLocalizacao("/home/gabriel/Área de Trabalho/MusicPlay/musicas/Mac_DeMarco_-_Jonny_s_Odyssey_(DemoLat.com).mp3");
+						m.setLocalizacao("\\Users\\Talle\\Desktop\\bti\\6\\lp2\\MusicPlayer\\musicas\\07 Sister.mp3");
 					}
 				}
 				//System.out.println(m.getLocalizacao());
@@ -369,7 +415,7 @@ public class JanelaPlayer extends JFrame {
 	            System.out.println("Executando...");
 	           // player.play();
 	            System.out.println("Terminado");
-	            mp3player = new Mp3Player(player);
+	            mp3player = new Mp3Player(player);            
 	            mp3player.setVisible(true);
 	            
 	        } catch (Exception error) {
@@ -380,7 +426,9 @@ public class JanelaPlayer extends JFrame {
 		});
 		btnTocarMusica.setBounds(367, 351, 181, 23);
 		contentPane.add(btnTocarMusica);
-		
+		/**
+		 * Botao que remove musica.
+		 */
 		JButton btnNewButton_1 = new JButton("Remover Musica");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			
@@ -410,7 +458,7 @@ public class JanelaPlayer extends JFrame {
 						System.out.println("Artista dados:" +  dados[0]);
 						System.out.println("Nome classe:" + a.getNome());
 						System.out.println("Nome dados:" + dados[1]);
-						System.out.println("NÃO ACHOU!!");
+						System.out.println("NÃƒO ACHOU!!");
 					}
 				}
 				list_1.setModel(listModel);

@@ -55,6 +55,9 @@ public class JanelaCadastro extends JFrame{
 		});
 	}*/
 	
+	/**
+	 * Funcao que apaga todos os campos do cadastro.
+	 */
 	public void ApagaTudo() {
 		textField.setText(null);
 		textField_1.setText(null);
@@ -64,6 +67,7 @@ public class JanelaCadastro extends JFrame{
 	}
 	/**
 	 * Create the frame.
+	 * param sistema classe sistema.
 	 */
 	
 	public JanelaCadastro(Sistema sistema) {

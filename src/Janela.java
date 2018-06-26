@@ -38,6 +38,7 @@ public class Janela extends JFrame {
 	
 	/**
 	 * Launch the application.
+	 * @param args argumentos
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -99,7 +100,9 @@ public class Janela extends JFrame {
 		contentPane.add(erro);
 		
 		JButton btnEntrar = new JButton("Entrar");
-
+		/**
+		 * Botão pra entrar no Player.
+		 */
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String l = textField.getText();
